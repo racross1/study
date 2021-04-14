@@ -28,7 +28,7 @@ function isUnique2(str){
 
 }
 
-console.log(isUnique2(str2))
+// console.log(isUnique2(str2))
 
     // str.split('').forEach(x => {
     //     console.log(str.split('').filter(n => n === x).length)
@@ -36,3 +36,34 @@ console.log(isUnique2(str2))
     //         return false
     //     } 
     // })
+
+
+//this one uses for loop and an object storing instances.
+// not sure why it's doing it with the second && condition tho
+
+function everyCharUnique3(str) {
+    let obj = {};
+    for (let i = 0; i < str.length; i++) {
+      if (obj[str[i]] && obj[str[i]] >= 1) {
+        return false;
+      } else {
+        obj[str[i]] = 1;
+      }
+    }
+    return true;
+  }
+
+  function everyCharUnique4(str) {
+    let obj = {};
+    for (let i = 0; i < str.length; i++) {
+      if (obj[str[i]]) {
+        return false;
+      } else {
+        obj[str[i]] = 1;
+      }
+    }
+    return true;
+  }
+
+
+console.log(isUnique2(str2))
