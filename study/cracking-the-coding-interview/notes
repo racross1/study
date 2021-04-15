@@ -1,0 +1,14 @@
+
+To remove all characters that are not alphabets (english alphabets)
+In your case, it might be:
+
+str = str.replace(/[^A-Za-z']/g, "");
+...which will replace except the English characters A-Z (ABCDEFGHIJKLMNOPQRSTUVWXYZ), a-z (abcdefghijklmnopqrstuvwxyz), and the single quote with nothing (e.g., remove it).
+
+include also numbers
+console.log(str.replace(/[^A-Za-z0-9]/g, ''))
+console.log(str8.replace(/[^A-Za-z\d]/g, ''))
+
+above for only letters also seems to work without '
+
+SEE palindrom permutation for that regex in action
