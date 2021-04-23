@@ -23,29 +23,42 @@
 //  */
 
 
+function ListNode(val, next) {
+    this.val = (val===undefined ? 0 : val)
+    this.next = (next===undefined ? null : next)
+}
+
 // Input: 
 head = [1,4,3,2,5,2]
 x = 3
 // Output: [1,2,2,4,3,5]
- var partition = function(head, x) {
 
-    //have tracker pointing to latest val less than x so that you can make that.next current if current is less than x
-    let current = head
-    let tracker = head
+var partition = function(head, x) {
+    let leftDummy = new ListNode()
+    let rightDummy = new ListNode()
+    let leftIter = leftDummy
+    let rightIter = rightDummy
+    let iter = head 
 
-
-    while(current && current.next){
-   
-        if (current.val < x){
-            tracker
-        } else {
-            current = current.next
+    while (iter){
+        if (iter.val < x){
+            leftIter.next = iter 
+            leftIter = iter
+        } else if (iter.val >= x){
+            rightIter.next = iter 
+            rightIter = iter
         }
 
+        iter = iter.next
     }
 
-    return head
+    rightIter.next = null
+    leftIter.next = rightDummy.next
+
+    return leftDummy.next
+    
 
 
     
 };
+
