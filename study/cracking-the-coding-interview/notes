@@ -14,3 +14,5 @@ above for only letters also seems to work without '
 SEE palindrom permutation for that regex in action
 
 https://github.com/careercup/CtCI-6th-Edition-JavaScript-ES2015/blob/50cfea6b2aa9bddf1ecdd9d420e47133dbfa682b/src/chapter1/ch1-q5.js
+
+FAST AND SLOW POINTER TO FIND MIDDLE OF LINKED LIST (SEE 2.3 delete middle node)
