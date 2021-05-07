@@ -23,6 +23,10 @@ let strs4 = ["",""]
 // Expected:
 // [["",""]]
 
+let strs5 = ["c","c"]
+//expected: 
+//[["c","c"]]
+
 
 // input: array of strs
 //output array of array of strs
@@ -46,59 +50,80 @@ let strs4 = ["",""]
  * @param {string[]} strs
  * @return {string[][]}
  */
- var groupAnagrams = function(strs) {
-    // if (strs.length < 2) {
-    //     return [strs]
-    // } 
+//  var groupAnagrams = function(strs) {
+//     // if (strs.length < 2) {
+//     //     return [strs]
+//     // } 
 
     
     
-    let words = {}
-    let output = {}
-    let blanks = []
+//     let words = []
+//     let output = {}
+//     let blanks = []
 
-     for (let i = 0; i < strs.length; i++){
-        if (strs[i] === ""){
-           blanks.push('')
-        } 
-         for (let j = 0; j < strs[i].length; j++){
+//      for (let i = 0; i < strs.length; i++){
+//         if (strs[i] === ""){
+//            blanks.push('')
+//         } 
+//          for (let j = 0; j < strs[i].length; j++){
            
-            if (!words[strs[i]]){
-                words[strs[i]] = strs[i].charCodeAt(j) 
-            } else {
-            words[strs[i]] += strs[i].charCodeAt(j) 
-            }
-         }
+//             // if (!words[strs[i]]){
+//                 words.push([strs[i], strs[i].charCodeAt(j)]) 
+//          //    } else {
+//          //    words[strs[i]] += strs[i].charCodeAt(j) 
+//          //    }
+//          // }
 
-     }
+//      }
+//    }
 
-     console.log(words)
+//      console.log('first words: ', words)
 
 
-     for (key in words){
-      //   console.log(key)
-         if (!output[words[key]]) {
-            // if (key === '') {
-            //     output[words[key]] = 
-            // } else {
-            output[words[key]] = [key]
-         } else {
-             output[words[key]].push(key)
-         }
+//      words.forEach(arr => {
+//         if (!output[arr[1]]){
+//            output[arr[1]] = [arr[0]]
+//         } else{
+//            output[arr[1]].push(arr[0])
+//         }
+//      })
+     
 
-     }
 
-   //   console.log('words: ', words)
-   //   console.log(words.length)
-   //   console.log('blanks: ', blanks)
-   //   console.log('output: ', output)
+//    //   console.log('words: ', words)
+//    //   console.log(words.length)
+//    //   console.log('blanks: ', blanks)
+//    //   console.log('output: ', output)
 
-     //add conditional to check if words and blanks.length respectively are 0 or not
-  return Object.values(words).length > 0 ? [...Object.values(output), ...blanks] : blanks
+//      //add conditional to check if words and blanks.length respectively are 0 or not
+//   return Object.values(words).length > 0 ? [...Object.values(output), ...blanks] : [blanks]
     
+// };
+
+const groupAnagrams = strs => {
+   //create a map
+   const map = {};
+   
+   for (let str of strs) {
+      //for each string in array key = sorted string 
+      const key = [...str].sort();
+console.log('key: ', key)
+
+//if the key (i.e. the sorted string) is not in the map, allocate a blank array for it
+       if (!map[key]) {
+           map[key] = [];
+       }
+//after that, no matter what, push the string into the map (this way you don't have to do separate steps for creating key for string and pushing string into that key)
+       map[key].push(str);
+   }
+   console.log(map)
+//map object keys are sorted strings, values are the strings as they appear in the input. values of map gives array of strings grouped by key
+   return Object.values(map);
 };
 
-// console.log(groupAnagrams(strs1))
-console.log(groupAnagrams(strs2))
+
+console.log(groupAnagrams(strs1))
+// console.log(groupAnagrams(strs2))
 // console.log(groupAnagrams(strs3))
 // console.log(groupAnagrams(strs4))
+// console.log(groupAnagrams(strs5))
