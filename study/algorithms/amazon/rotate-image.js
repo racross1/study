@@ -48,10 +48,14 @@ let matrix4 = [[1,2],[3,4]]
 //  * @return {void} Do not return anything, modify matrix in-place instead.
 //  */
 var rotate = function(matrix) {
-    const N = matrix.length - 1;  
-    return matrix.map((row, i) => 
-         row.map((val, j) => matrix[N - j][i])
+    const n = matrix.length - 1; 
+    const result = matrix.map((row, i) => 
+         row.map((val, j) => matrix[n - j][i])
     );
+    matrix.length = 0;      
+    matrix.push(...result);
+    return matrix;
+    
     
 };
 
@@ -77,10 +81,65 @@ const rotate2 = function(matrix){
   }
 
 
-function test(matrix){
-    for (let i in matrix){
-        console.log(i)
-    }
-}
+// function test(matrix){
+//     for (let i in matrix){
+//         console.log(i)
+//     }
+// }
 
-test(matrix1)
+// test(matrix1)
+
+
+// another one
+'https://leetcode.com/problems/rotate-image/discuss/211812/JavaScript-52-ms-faster-than-100.00'
+// var rotate = function(matrix) {
+//     for (var row = 0; row <= matrix.length-1; row++) {
+//     var tracker = matrix.length-1;
+    
+//       for (var j = matrix.length-1; j >= 0; j--) {
+//         var current = matrix[row].pop();
+//         matrix[tracker].unshift(current);
+//         tracker--;
+//       }
+//     }
+//     return matrix;
+//   };
+
+//ANOTHER
+// Transpose the matrix
+// Reverse each row
+
+
+var rotate3 = function(matrix) {
+    for (let i=0;i<matrix.length;i++) {
+        for (let j=i;j<matrix[0].length;j++) {
+            //This loop transposes the matrix. How that's done explained:
+            //for each row, going through each value
+            //setting temp element to ij
+            //seeting ji to ij
+            //settingji to temp (initially set to ij)
+            let temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
+        }
+    }
+
+    for (let i=0;i<matrix.length;i++) {
+        for (let j=0;j<matrix[0].length/2;j++) {
+            console.log(`i: ${i}`)
+            console.log(`j: ${j}`)
+            let temp = matrix[i][j];
+            console.log(`temp1: ${temp}`)
+            matrix[i][j] = matrix[i][matrix[0].length-j-1];
+            console.log(`matrix[i][j]: ${matrix[i][j]}`)
+            console.log(`matrix: ${matrix}`)
+            console.log(`matrix[i][matrix[0].length-j-1]: ${matrix[i][matrix[0].length-j-1]}`)
+            matrix[i][matrix[0].length-j-1] = temp;
+        }
+    }
+};
+
+
+console.log(rotate3(matrix1))
+// console.log(rotate(matrix2))
+// console.log(rotate(matrix3))
