@@ -45,10 +45,10 @@ let t4 = "aea"
 var findTheDifference = function(s, t) {
     if (s.length === 0) return t;
     var letters = 'abcdefghijklmnopqrstuvwxyz';
-    console.log(`s.split(): ${s.split('')}`)
-    console.log(`s.split().map w/ charCodeAt: ${s.split('').map(e => e.charCodeAt(0))}`)
+    // console.log(`s.split(): ${s.split('')}`)
+    // console.log(`s.split().map w/ charCodeAt: ${s.split('').map(e => e.charCodeAt(0))}`)
     var sSum = s.split('').map(e => e.charCodeAt(0) - 'a'.charCodeAt(0)).reduce((a, b) => a + b);
-    console.log(`sSum: ${sSum}`)
+    // console.log(`sSum: ${sSum}`)
     var tSum = t.split('').map(e => e.charCodeAt(0) - 'a'.charCodeAt(0)).reduce((a, b) => a + b);
     return letters[tSum -sSum];
 };
@@ -60,11 +60,37 @@ var findTheDifference = function(s, t) {
 //can get string from char code at to convert that dif into a character
 
 var findTheDifference2 = function(s, t) {
-    const sum1 = s.split('').reduce((acc, cur) => acc + cur.charCodeAt(0), 0);
+    const sum1 = s.split('').reduce((acc, cur) => {
+        console.log(cur)
+        console.log(cur.charCodeAt(0))
+        return acc + cur.charCodeAt(0)
+    }, 0)
     const sum2 = t.split('').reduce((acc, cur) => acc + cur.charCodeAt(0), 0);
     console.log(sum1)
     console.log(sum2)
     return String.fromCharCode(sum2 - sum1);
   };
 
-  console.log(findTheDifference2(s1,t1))
+//   console.log(findTheDifference2(s1,t1))
+
+//my attempt after a while of not having looked at problem
+  var findTheDifferenceTry2 = function(s, t) {
+    let arrS = s.split('').map((ltr, idx) => {
+        return s.charCodeAt(idx)
+    })
+
+    let arrT = t.split('').map((ltr, idx) => {
+        return t.charCodeAt(idx)
+    })
+    
+   let sumS = arrS.reduce((a,b) => a+b, 0)
+   let sumT = arrT.reduce((a,b) => a+b, 0)
+
+
+   return String.fromCharCode(sumT - sumS)
+    
+    };
+
+
+    console.log(findTheDifference2(s1, t1))
+    console.log(findTheDifferenceTry2(s1, t1))

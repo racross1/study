@@ -32,6 +32,10 @@ let text9 = "Toads yelled with the cat of a doll"
 let text10 = 'A rat ate on the toad of a frog'
 
 
+let text10 = 'A jedi exploded from a doll on the rat'
+
+
+
 
 
 function topThreeWords(text) {
