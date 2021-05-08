@@ -1,10 +1,10 @@
 'https://github.com/careercup/CtCI-6th-Edition-JavaScript-ES2015/'
+//book resource
+
 
 'use strict';
 
-let graph1 = [[1,2],[3],[3],[]]
-let source1 = graph1[0]
-let target1 = graph1[2]
+
 
 /**
  * One way to check if two nodes are connected is to do a BFS of the graph

@@ -1,5 +1,11 @@
 'https://leetcode.com/problems/remove-nth-node-from-end-of-list/submissions/'
 
+//my solution faster than the discussion solution below it!
+//mine:
+
+// Runtime: 72 ms, faster than 98.62% of JavaScript online submissions for Remove Nth Node From End of List.
+// Memory Usage: 40.1 MB, less than 78.84% of JavaScript online submissions for Remove Nth Node From End of List.
+
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -22,7 +28,7 @@
      this.val = (val===undefined ? 0 : val)
      this.next = (next===undefined ? null : next)
 
-     console.log(`val: ${this.val}, next: ${this.next}`)
+    //  console.log(`val: ${this.val}, next: ${this.next}`)
     }
 
 
@@ -76,26 +82,26 @@ var offsetPointer = function(head, n){
    return p2
 }
 
-console.log(head1.forEach((n, i)=> {
-    return ListNode(n, head1[i+1])
-}))
+// console.log(head1.forEach((n, i)=> {
+//     return ListNode(n, head1[i+1])
+// }))
 
 
 //looking at while n--: the below prints 4, 3, 2, 1, 0
 
-function testMinusMinus(n){
-    while(n--){
-        console.log(n)
-    }
-}
+// function testMinusMinus(n){
+//     while(n--){
+//         console.log(n)
+//     }
+// }
 
-testMinusMinus(5)
+// testMinusMinus(5)
 
 
 //similar solution to mine, except uses while(n--) more cleanly (without helper)
 
 
-algorithm
+// algorithm
 
 // To remove n-th node from the end, send node hare as far as n.
 // Move node curr and hare in same speed until hare gets the last node.
@@ -114,19 +120,36 @@ algorithm
 // * @param {number} n
 // * @return {ListNode}
 // */
-var removeNthFromEnd = function(head, n) {
-   let hare = head, curr = head;
-   while (n--) {
+var removeNthFromEnd3 = function(head, n) {
+   //start hare and curr at head
+    let hare = head, curr = head;
+   //move hare to n away from head
+    while (n--) {
        hare = hare.next;
    }
+
+   //while hare and hare.next are not null
+   //increment hare and curr
    while (hare && hare.next) {
        curr = curr.next;
        hare = hare.next;
    }
+   //if hare is null
+   //that is, when n is the same length as the list
+   //we need to remove the first element instead of the next element of curr. 
+   
    if (!hare) {
        head = head.next;
    } else {
-       curr.next = curr.next ? curr.next.next : null;
+     //if hare is not null, then skip over the node after curr to delete it from the list
+     curr.next = curr.next.next
+
+     //note in the version of this solution in the discussion session it had this portion written as the below
+     //however I submitted with the above (i.e. without ternary) and it works
+    //    curr.next = curr.next ? curr.next.next : null;
    }
    return head;
 };
+
+
+console.log(removeNthFromEnd3(head1, n1))
