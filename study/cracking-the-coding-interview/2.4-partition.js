@@ -34,15 +34,22 @@ x = 3
 // Output: [1,2,2,4,3,5]
 
 var partition = function(head, x) {
+    //new nodes for dummy lists
     let leftDummy = new ListNode()
     let rightDummy = new ListNode()
+    //iters starting at dummy heads
     let leftIter = leftDummy
     let rightIter = rightDummy
+    //iter starting at actual head
     let iter = head 
 
+    //while iter through list has not reached end
     while (iter){
+        //if less than x 
         if (iter.val < x){
+            //add iter to left iter
             leftIter.next = iter 
+            //move left iter to its own tail
             leftIter = iter
         } else if (iter.val >= x){
             rightIter.next = iter 
@@ -52,9 +59,12 @@ var partition = function(head, x) {
         iter = iter.next
     }
 
+    //make end of right end of list
     rightIter.next = null
+    //attach everything after right dummy to end of left list to connect and remove rd 
     leftIter.next = rightDummy.next
 
+    //return left dummy.next to give new list with ldummy removed
     return leftDummy.next
     
 
