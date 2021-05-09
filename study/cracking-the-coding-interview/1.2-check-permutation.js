@@ -20,6 +20,8 @@ function checkPermutation2(str1, str2) {
       return false;
     }
     var myHash = []
+
+    //go through first str and create hash counting occurrences of each letter 
     for(var i = 0; i < str1.length; i++) {
       if(myHash[str1[i]]) {
         myHash[str1.charAt(i)]++;
@@ -29,10 +31,13 @@ function checkPermutation2(str1, str2) {
       }
      }
 
-  
+  //go through second hash and decrement each occurence of str2 elements in hash
     for(i = 0; i < str2.length; i++) {
       myHash[str2.charAt(i)]--;
     }
+
+//then go through each element in hash and if its count is not 0 that means there is an inequality in letters occurring 
+//which means they are not permutations of each other
     for(i in myHash) {
       if(myHash[i] !== 0) {
         return false;
