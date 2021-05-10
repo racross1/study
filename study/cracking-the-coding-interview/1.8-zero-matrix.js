@@ -18,12 +18,11 @@ let matrix1 = [[1,1,1],[1,0,1],[1,1,1]]
 let matrix2 = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
 // Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
 
-//zero out subarr
-//zero out same index in other subarrs
-//keep track of rows and cols to zero and then do it at end?
-//don't want to do it real time because then in subsequent iters, it would read the changed zeroes
 
-//mine below works. so additional below for row and column flags approach
+
+//mine below works. so additional below below for row and column flags approach
+//below approach, looping through rows and cols, keep track of rows and cols to be zeroed out. 
+//Then at the end loop through matrix twice more to zero out rows and cols accordingly  
  var setZeroes = function(matrix) {
      let rows = []
      let cols = []
@@ -44,8 +43,6 @@ let matrix2 = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
      
      for (let k = 0; k < matrix.length; k++){
          if (rows.includes(k)){
-            // console.log('matrix[k]',matrix[k]) 
-            // console.log('matrix[k].map',matrix[k].map(n=>n=0)) 
             matrix[k] = matrix[k].map(n=>n=0)
          }
 
@@ -64,7 +61,7 @@ console.log(setZeroes(matrix1))
 console.log(setZeroes(matrix2))
 
 
-//
+//Other solution
 
 /**
  * Time: O(n * m)
