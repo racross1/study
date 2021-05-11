@@ -81,8 +81,14 @@ const s7 = "dvdf"
      }
      for(let i = 0; i < s.length;  i++) {
          if(hash[s[i]] == null) {
-             curr += 1;
+            
+            curr += 1;
          } else {
+            console.log(hash) 
+            console.log('i: ', i)
+             console.log('hash: ', hash)
+             console.log('hash[s[i]]: ', hash[s[i]])
+             console.log('curr: ', curr)
              curr = Math.min(i - hash[s[i]], curr + 1);
          }
          max_len = Math.max(max_len, curr);
