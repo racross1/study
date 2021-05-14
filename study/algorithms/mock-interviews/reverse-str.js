@@ -1,21 +1,43 @@
 let str1 = 'hello'
 //olleh
 
+let str2 = 'turtle'
+
+let str3 = 'cat'
+
+
+
+// function reverse(str){
+//     let i = 0
+//     let arr = str.split('')
+    
+//     while (i < str.length / 2){
+//         let temp = arr[i]
+        
+//         arr[i] = arr[arr.length - 1 - i]
+//         arr[arr.length - 1 - i] = temp		
+//         i++
+//     }
+
+//     return arr.join('')
+
+// }
 
 
 function reverse(str){
     let i = 0
-    let str2 = str.split('')
-    while (i < str.length / 2){
-        let temp = str2[i]
-        str2[i] = str2[str2.length - 1 - i]
-        str2[str2.length - 1 - i] = temp		
-        i++
+    let arr = str.split('')
+    
+    for(let i = 0; i < str.length / 2; i++) {
+        let temp = arr[i]
+        arr[i] = arr[arr.length - 1 - i]
+        arr[arr.length - 1 - i] = temp		
     }
 
-    return str2.join('')
+    return arr.join('')
 
 }
 
-
 console.log(reverse(str1))
+console.log(reverse(str2))
+console.log(reverse(str3))
