@@ -36,7 +36,9 @@ let banned5 = ["m","q","e","l","c","i","z","j","g","t","w","v","h","p","d","b","
  * @param {string} paragraph
  * @param {string[]} banned
  * @return {string}
- */
+*/
+
+//this one doesn't seem to work when submitted, check one below, which is similar in approach and very fast
  var mostCommonWord = function(paragraph, banned) {
     console.log(paragraph.toLowerCase().split(/\W/)) 
     paragraph = paragraph.toLowerCase().replace(/[^a-z' ']'/gi, ' ')
@@ -80,7 +82,7 @@ console.log(mostCommonWord(paragraph3, banned3))
 
 //another JS solution to understand
 //check regex
-
+//this one is the one submitted and beats on 99%
 const mostCommonWord2 = (paragraph, banned) => {
     const bannedSet = new Set(banned);
     const words = paragraph.toLowerCase().split(/\W+/);
