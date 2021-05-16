@@ -20,7 +20,7 @@
  */
 
 
-//solution from discussion, which I worked to implement on my own as well
+//solution from discussion, which I worked to implement on my own as well. additional example below that which uses similar logic
 //  This is a very classic BST problem, we just need to scan every single node in the tree 
 //  and see if the node's value matches the BST rules, 
 //  that is all the values in node's left subtree are less than the value in node, 
