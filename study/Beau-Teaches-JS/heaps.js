@@ -22,6 +22,9 @@
 //actually this is Math.floor(i/2) because you divide by 2 and then round down to nearest whole number (so you can do left and right)
 //^indexes. This explained ~2:45 in video
 
+//This stack overflow article talks about why array at index 0 in a stack heap is left unused:
+'https://stackoverflow.com/questions/22900388/why-in-a-heap-implemented-by-array-the-index-0-is-left-unused'
+
 let MinHeap = function() {
 	
 	let heap = [null];

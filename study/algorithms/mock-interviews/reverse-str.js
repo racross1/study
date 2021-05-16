@@ -25,7 +25,6 @@ let str3 = 'cat'
 
 
 function reverse(str){
-    let i = 0
     let arr = str.split('')
     
     for(let i = 0; i < str.length / 2; i++) {
