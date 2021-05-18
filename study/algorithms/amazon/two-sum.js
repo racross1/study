@@ -22,7 +22,23 @@
 
 // Input: nums = [3,3], target = 6
 // Output: [0,1]
-
+//my own solution after watching youtube explanation followed by discussion solutions:
+var twoSum = function(nums, target) {
+    let prevVals = {}
+    
+    for (let i = 0; i < nums.length; i++){
+        let currentNum = nums[i]
+        let needed = target - currentNum
+        let neededIdx = prevVals[needed]
+        
+        if (neededIdx != null) {
+            return [neededIdx, i]
+        } else {
+            prevVals[currentNum] = i
+        }
+    }
+    
+};
 
 // explanation:
 // this is brilliant.. to anyone whos trying to understand this in plain english and basic math:
@@ -40,7 +56,7 @@
 
 // tldr: he's a badass
 
-var twoSum = function(nums, target) {
+var twoSum1 = function(nums, target) {
     const comp = {};
     for(let i=0; i<nums.length; i++){
    
@@ -55,7 +71,39 @@ var twoSum = function(nums, target) {
 };
 
 
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+ var twoSum2 = function(nums, target) {
+	let hash = {};
+	
+	for(let i = 0; i < nums.length; i++) {
+		const n = nums[i];
+		if(hash[target - n] !== undefined) {
+			return [hash[target - n], i];
+		}
+		hash[n] = i;
+	}
+	return [];
+}
 
+const twoSum3 = (nums, target) => {
+    const map = {};
+  
+    for (let i = 0; i < nums.length; i++) {
+      const another = target - nums[i];
+  
+      if (another in map) {
+        return [map[another], i];
+      }
+  
+      map[nums[i]] = i;
+    }
+  
+    return null;
+  };
 
 
 // Input: 
@@ -80,3 +128,39 @@ nums4 = [3,2,3]
 target4 = 6
 
 console.log(twoSum(nums1,target1))
+
+
+// Two-pass Hash Table
+
+// eg. nums = [3,5,9,12,15], target = 21
+
+const hashTable = {
+	3: 0,
+	5: 1,
+	9: 2,
+	12: 3,
+	15: 4
+}
+
+// 1. Create a hashTable
+// 2. Iterate nums
+// 	2.1 Find the complement of nums[i] in the hashTable by checking the key of the hashTable object. In this way, the iteration time will be significantly reduced. If found, return [i, found]
+// 3. If not found, return [0,0]
+'https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/508/discuss/231428/Javascript-the-3-sample-solutions-with-notes'
+
+var twoSum4 = function(nums, target) {
+    if (nums.length === 2) return [0, 1];
+    const len = nums.length;
+    let hashTable = {};
+	for(let i = 0; i < len; i++){
+		// Add a new obj to the hashTable where key = nums[i] and value = i
+		hashTable[nums[i]] = i;
+	}
+	
+    for(let i = 0; i < len; i++) {
+        let complement = target - nums[i];
+        let found = hashTable[complement]; // Determine whether the complement exist in the hashTable
+        if(found !== undefined && found != i) return [i, found];
+	}
+	return [0,0];
+}
