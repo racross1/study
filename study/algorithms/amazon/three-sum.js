@@ -27,7 +27,8 @@ let nums4 = [0,0,0]
  * @return {number[][]}
  */
 
-//second attempt based on explanation solution at the bottom of this page
+//second attempt based on explanation solution at the bottom of this page. uses 3 pointers similar to three sum closest.
+//solution accepted but is 38% for time complexity
 var threeSum2 = function(nums) {
     if (nums.length < 3) return []
     

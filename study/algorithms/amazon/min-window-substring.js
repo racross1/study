@@ -12,7 +12,7 @@
  * @return {string}
  */
  
-
+//I do not currently understand this one
  function minWindow(s, t) {
     var ans = '';
     

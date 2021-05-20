@@ -23,6 +23,7 @@
 // Input: nums = [3,3], target = 6
 // Output: [0,1]
 //my own solution after watching youtube explanation followed by discussion solutions:
+//this one is accepted but is relatively slow
 var twoSum = function(nums, target) {
     let prevVals = {}
     

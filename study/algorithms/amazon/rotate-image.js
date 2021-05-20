@@ -74,6 +74,9 @@ var rotate = function(matrix) {
 // another solution
 'https://leetcode.com/problems/rotate-image/discuss/159431/javascript-solution-with-example'
 
+
+//this one works - reverses matrix and then transposes rows and columns
+//uses a swap method I've seen in another problem
 const rotate2 = function(matrix){
     matrix = matrix.reverse()
     for(let i in matrix)
@@ -128,6 +131,7 @@ var rotate3 = function(matrix) {
         }
     }
 
+    
     for (let i=0;i<matrix.length;i++) {
         for (let j=0;j<matrix[0].length/2;j++) {
             console.log(`i: ${i}`)

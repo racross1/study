@@ -24,21 +24,28 @@ let target1 = 1
 
 //mine with help accepted. Another with a similar idea + different implementation below
  var threeSumClosest = function(nums, target) {
-     //map of target - each num
-     //
-
+    
+    //first sort
      nums = nums.sort((a,b) => a-b)
      let closest = Infinity 
      
-
+//end loop at - 2 because k pointer starts at last element
      for (let i = 0; i < nums.length - 2; i++){
-         let j = i + 1
+        //j is 1 ahead of i 
+        let j = i + 1
+        //k starts at end of string
          let k = nums.length - 1
+         //while pointer that's one ahead of loop iterator is less than right pointer k
          while (j < k){
-             let sum = nums[i] + nums[j] + nums[k]
+            //get the sum of nums at each index 
+            let sum = nums[i] + nums[j] + nums[k]
 
+            //if the absolute value of the difference of sum minus target is less than the current abs difference of closest and target
+            //then the current sum is the new value for closest
              if (Math.abs(sum - target) < Math.abs(closest - target)) closest = sum
+             //if the sum is greater than the target, decrement k (remember, the list is sorted)
              if (sum > target) k--
+             //otherwise decrement k
              else j++
          }
      }
