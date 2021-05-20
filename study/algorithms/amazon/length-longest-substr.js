@@ -44,6 +44,43 @@ const s7 = "dvdf"
  */
 
 
+
+//this is the one I understand best - notes on implementation below. I implemented with posIndex renamed to currIdxMaxStr
+//result appears to be slow relative to other submissions but it's the one that's easiest for me to understand.
+ var lengthOfLongestSubstring1 = function(s) {
+    console.log('original str: ', s)
+    var sLen = s.length,
+      maxLen = 0,
+      maxStr = '',
+      tmpStr,
+      posIndex,
+      i;
+  
+    for( i = 0 ; i < sLen; i++ ){
+  
+    //temp string = s at current index
+      tmpStr = s[i];
+      console.log('tempStr: ', tmpStr)
+    //posIndex = index of temp string character (i.e. index at current value in for loop) in maxStr (initially initialized to 0)
+      posIndex = maxStr.indexOf(tmpStr);
+      console.log('posIndex: ', posIndex)
+  
+      //if posIndex is not -1, that means you've found that letter in the current max string
+      if(posIndex > -1){
+          //with this you want to start the new max string at the letter after the initial occurrence of the current letter (which is a repeated letter)
+        maxStr = maxStr.substring(posIndex + 1);
+        console.log('maxStr.substring(posIndex + 1): ', maxStr)
+      }
+  
+      
+      maxStr += tmpStr;
+      console.log('maxStr after addition of tempStr: ', maxStr)
+      maxLen = Math.max(maxLen, maxStr.length);
+    }
+  
+    return maxLen;
+  };
+
 //  The idea behind this code is to use hash maps to keep track of seen substrings.
 //  Obviously if any string is less than two, the longest substring is equal to the length of that substring.
 //  However, if not, then we would have to consider another approach.
@@ -72,7 +109,7 @@ const s7 = "dvdf"
  
 
 
- var lengthOfLongestSubstring = function(s) {
+ var lengthOfLongestSubstring2 = function(s) {
      let max_len = 0;
      let curr = 0;
      let hash = {}; 
@@ -96,6 +133,27 @@ const s7 = "dvdf"
      }
      return max_len;
  };
+
+
+//a version using reduce that I don't immediatly understand
+'https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/2961/discuss/2291/9-line-JavaScript-solution'
+const lengthOfLongestSubstring3 = s => {
+    // keeps track of the most recent index of each letter.
+    const map = {};
+    // keeps track of the starting index of the current substring.
+    var left = 0;
+    
+    return s.split('').reduce((max, v, i) => {
+        // starting index of substring is 1 + (the last index of this letter) to ensure this letter is not counted twice.
+        left = map[v] >= left ? map[v] + 1 : left;
+        // updates last recorded index of letter to the most recent index.
+        map[v] = i;
+        
+        // indices of current substring is (idx - leftIdx, idx).
+        // +1 because if your substring starts and ends at index 0, it still has a length of 1.
+        return Math.max(max, i - left + 1);
+    }, 0)
+};
 
 
 
@@ -142,5 +200,5 @@ const s7 = "dvdf"
 // console.log(lengthOfLongestSubstring(s4))
 // console.log(lengthOfLongestSubstring(s5))
 // console.log(lengthOfLongestSubstring(s6))
-console.log(lengthOfLongestSubstring(s7))
+console.log(lengthOfLongestSubstring1(s7))
 
