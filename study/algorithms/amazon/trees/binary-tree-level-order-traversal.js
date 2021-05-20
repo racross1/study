@@ -29,6 +29,9 @@
 //implementation similar to binary tree zigzag
 //beats 99%s
 //implementation of one with a queue below
+
+//this one here uses recursive call to level order traversal
+//for each call increments level
  var levelOrder = function(root) {
      let result = []
 
