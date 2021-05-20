@@ -14,7 +14,19 @@
     // iterating through tree, keep track of sum of paths
     //dfs?
 
-    root.val[left.val, right.val]
+//follow up to the above understanding ^ it appears I was wrong on that def. 
+//next solution will be to try DFS, keep track of all paths and then use Kadane's algo again to find max
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Definition for a binary tree node.
@@ -28,6 +40,11 @@
  * @param {TreeNode} root
  * @return {number}
  */
+
+//pretty sure this solution of mine works for my prior understanding of the problem 
+//which was that a "path" only referred to a root and its 2 nodes. 
+//the below collects all roots and its 2 leaves and then uses Kadane's algorithm to get the max sum
+
  var maxPathSum = function(root) {
     if(!root || (!root.left && !root.right)) return root.val 
     let paths = []
@@ -36,25 +53,17 @@
      function getPaths(root){
          if(!root) return 
 
-         
          if (root.left || root.right){
              let path = [root.val]
              if(root.left){
-                 path.push(root.left.val)
+                 path.unshift(root.left.val)
              }
              
              if(root.right){
                  path.push(root.right.val)
              }
-
-  //get sum in here?
-             //max could be right, could be root, could be left
-                //[0] [1] [2]
-             //could be root + left
-             // [0][1]
-             //could be root.right
-             // [1][2]            
-                 paths.push(path.filter(n => n != null))
+            
+            paths.push(path.filter(n=> n != null))
     
              }
 
@@ -63,65 +72,23 @@
      }
  
      getPaths(root)
+    
+    function getSums(paths){
+        return paths.map(path => {
+            let currentMax =path[0], globalMax = path[0]
+            for (let i = 1; i < path.length; i++) {
+                currentMax = Math.max(path[i], currentMax + path[i])
+                globalMax = Math.max(currentMax,globalMax)
+            }
+            return globalMax;
+        })
+    }
 
-     // let pathSums = paths.map(n => n.reduce((a,b) => a+b))
-    // let pathSums = paths.map(n=>{
-    //      let bigSide = n.sort((a,b) => b-a)[0]
-    //      return Math.max(bigSide, n.reduce((a,b) => a+b))
-    //  })
-     //need a pathsums function to get max sum of each triplet
-     
+     let pathSums = getSums(paths)
      
 
      return pathSums.length > 0 ? pathSums.reduce((a,b) => Math.max(a,b)) : 0
-
-};
-
-
-
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-
-//latest version in leetcode IDE
- var maxPathSum = function(root) {
-     let paths = []
-   
-     function getPaths(root){
-         if(!root) return 
-
-         let path = [root.val, root.left.val, root.right.val]
-
-         //if a given root doesn't have 2 leaves we don't need to get the path, we just need to add whever node it does have to 
-         //our traversal function
-         if (!path.includes(null)){
-             paths.push(path)
-         } 
-
-         
-       
- 
-         getPaths(root.left)
-         getPaths(root.right)
-     }
- 
-     getPaths(root)
-
-     let pathSums = paths.map(n => n.reduce((a,b) => a+b))
-
-     return pathSums.reduce((a,b) => Math.max(a,b))
-
-};
-
+}
 
 var levelOrder = function(root) {
     let result = []
