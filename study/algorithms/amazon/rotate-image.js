@@ -47,6 +47,10 @@ let matrix4 = [[1,2],[3,4]]
 //  * @param {number[][]} matrix
 //  * @return {void} Do not return anything, modify matrix in-place instead.
 //  */
+
+
+//look at rotate3 for an annotated version below
+
 var rotate = function(matrix) {
     const n = matrix.length - 1; 
     const result = matrix.map((row, i) => 

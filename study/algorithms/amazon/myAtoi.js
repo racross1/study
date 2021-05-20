@@ -17,36 +17,6 @@ let s3 = "4193 with words"
 
 let s4 = "words and 987"
 
-//iterate through each char from left to right
-//char mins zero
-//add to result
-//for every added digit after first, multiply current answer by 10 and THEN add #
-//have a range at the end for numbers that are too big?
-
- var myAtoi = function(s) {
-     s = s.trim()
-     let negative = false
-     let result = 0
-
-     if ((/[a-zA-Z]/).test(s[0])) return result
-
-     for(let i = 0; i<s.length; i++){
-        let toInt = s[i] - 0  
-        if (toInt > -1 && toInt - 0 < 10 ){
-            if(s[i-1] === "-") negative = true 
-
-            if (result === 0){
-                 result += toInt
-             } else {
-                 result = result * 10 + toInt
-             }
-
-             if(s[i+1] == " ") break
-         }
-     }
-    
-     return negative ? 0 - result : result
-};
 
 
 
@@ -56,18 +26,21 @@ console.log(myAtoi(s3))
 console.log(myAtoi(s4))
 
 
-//my solution starting to get too long
 
 /**
  * @param {string} str
  * @return {number}
  */
+
+//see following solution from discussion. Employs similar concepts to the one I started on my own (very bottom)
+//for times sake decided not to run my own implementation
  var myAtoi = function(str) {
     let i = 0;
     let res = 0;
     let isNegative = false;
     
     // 1. Skip spaces
+    //could also trim here
     while (str[i] === ' ') {
         i += 1;
     }
@@ -81,6 +54,7 @@ console.log(myAtoi(s4))
 
     // 3. Process numbers and stop once an invalid character is found
     for (; i < str.length; i += 1) {
+        //this is one of the main differences with mine. I used 0 - val. This one uses char code
         const code = str.charCodeAt(i) - 48; // '0' is 48
         if (code < 0 || code > 9) {
             break;
@@ -93,6 +67,7 @@ console.log(myAtoi(s4))
         res = -res;
     }
     
+    //see check for size cap here
     return Math.max(-(2**31), Math.min(2**31 - 1, res));
 };
 
@@ -134,4 +109,40 @@ var myAtoi = function (str) {
     }
     num = sign*num;
     return num<=MIN?MIN:num>=MAX?MAX:num;
+};
+
+
+
+
+
+//mine, currently failing on some test cases
+//iterate through each char from left to right
+//char mins zero
+//add to result
+//for every added digit after first, multiply current answer by 10 and THEN add #
+//have a range at the end for numbers that are too big?
+
+var myAtoi = function(s) {
+    s = s.trim()
+    let negative = false
+    let result = 0
+
+    if ((/[a-zA-Z]/).test(s[0])) return result
+
+    for(let i = 0; i<s.length; i++){
+       let toInt = s[i] - 0  
+       if (toInt > -1 && toInt - 0 < 10 ){
+           if(s[i-1] === "-") negative = true 
+
+           if (result === 0){
+                result += toInt
+            } else {
+                result = result * 10 + toInt
+            }
+
+            if(s[i+1] == " ") break
+        }
+    }
+   
+    return negative ? 0 - result : result
 };

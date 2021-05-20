@@ -14,8 +14,10 @@
 //and then simply move on through and pop off the end each time and add the last node to the new list
 
 
-//from vid - may need to be adapted
+//from vid 
 'https://www.youtube.com/watch?v=UCv-EmtvPe4'
+
+// ran this one and it was accepted
 function reverseList(head){
     let prev = null
     let next = null 

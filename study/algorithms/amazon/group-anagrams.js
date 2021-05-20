@@ -28,6 +28,37 @@ let strs5 = ["c","c"]
 //[["c","c"]]
 
 
+const groupAnagrams = strs => {
+   //create a map
+   const map = {};
+   
+   for (let str of strs) {
+      //for each string in array key = sorted string 
+      const key = [...str].sort();
+console.log('key: ', key)
+
+//if the key (i.e. the sorted string) is not in the map, allocate a blank array for it
+       if (!map[key]) {
+           map[key] = [];
+       }
+//after that, no matter what, push the string into the map (this way you don't have to do separate steps for creating key for string and pushing string into that key)
+       map[key].push(str);
+   }
+   console.log(map)
+//map object keys are sorted strings, values are the strings as they appear in the input. values of map gives array of strings grouped by key
+   return Object.values(map);
+};
+
+
+console.log(groupAnagrams(strs1))
+// console.log(groupAnagrams(strs2))
+// console.log(groupAnagrams(strs3))
+// console.log(groupAnagrams(strs4))
+// console.log(groupAnagrams(strs5))
+
+
+
+
 // input: array of strs
 //output array of array of strs
 
@@ -99,31 +130,3 @@ let strs5 = ["c","c"]
 //   return Object.values(words).length > 0 ? [...Object.values(output), ...blanks] : [blanks]
     
 // };
-
-const groupAnagrams = strs => {
-   //create a map
-   const map = {};
-   
-   for (let str of strs) {
-      //for each string in array key = sorted string 
-      const key = [...str].sort();
-console.log('key: ', key)
-
-//if the key (i.e. the sorted string) is not in the map, allocate a blank array for it
-       if (!map[key]) {
-           map[key] = [];
-       }
-//after that, no matter what, push the string into the map (this way you don't have to do separate steps for creating key for string and pushing string into that key)
-       map[key].push(str);
-   }
-   console.log(map)
-//map object keys are sorted strings, values are the strings as they appear in the input. values of map gives array of strings grouped by key
-   return Object.values(map);
-};
-
-
-console.log(groupAnagrams(strs1))
-// console.log(groupAnagrams(strs2))
-// console.log(groupAnagrams(strs3))
-// console.log(groupAnagrams(strs4))
-// console.log(groupAnagrams(strs5))

@@ -83,6 +83,11 @@ console.log(mostCommonWord(paragraph3, banned3))
 //another JS solution to understand
 //check regex
 //this one is the one submitted and beats on 99%
+//create a set out of the banned words
+//split the paragraph using below regex
+//create a map
+//for each item in words, if it's not in the banned set
+  //if it's not in the map, add it to the map and increment the count to 1. Otherwise just increment the count
 const mostCommonWord2 = (paragraph, banned) => {
     const bannedSet = new Set(banned);
     const words = paragraph.toLowerCase().split(/\W+/);
@@ -96,6 +101,10 @@ const mostCommonWord2 = (paragraph, banned) => {
   
     let res = '';
     let max = -Infinity;
+    //then iterate through map look at each count
+    //if the count is greater than the current max
+    //result = w (the key and current string)
+    //and max = count
     for (const w in map) {
       const count = map[w];
       if (count > max) {

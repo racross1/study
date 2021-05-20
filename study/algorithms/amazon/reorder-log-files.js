@@ -50,9 +50,43 @@ let output3 = ["5 m w","j mo","t q h","g 07","o 2 0"]
  * @return {string[]}
  */
 
+//me trying to refactor for better time complexity:
+//result faster than 97% (much faster than others). uses localeCompare.
+//my implementation a variation of locale compare methods below
+var reorderLogFiles2 = function(logs) {
+
+    let digitLogs = []
+    let letterLogs = []
+
+    const getLog = function(str){
+        return str.slice(str.indexOf(' ') + 1)
+    }
+
+    const isNum = function(str){
+        return getLog(str).match(/\d/)
+    }
+
+    const compare = function(a,b) {
+        let result = getLog(a).localeCompare(getLog(b))
+        return result !== 0 ? result : a.localeCompare(b)
+
+    }
+
+    logs.forEach(log => {
+        isNum(getLog(log)) ? digitLogs.push(log) : letterLogs.push(log)
+
+    })
+
+    return [...letterLogs.sort(compare), ...digitLogs]
+}
+
+
+
 
 
 //another solution with localeCompare
+//this version has a getLog function which slices after the index of the first space
+//helper function to see if isnum (returns boolean)
 
 var reorderLogFiles4 = function(logs) {
     
@@ -107,35 +141,7 @@ const reorderLogFiles3 = (logs) => {
 
 
 
-//me trying to refactor for better time complexity:
-//result faster than 97% (much faster than others). uses localeCompare.
 
- var reorderLogFiles2 = function(logs) {
-
-    let digitLogs = []
-    let letterLogs = []
-
-    const getLog = function(str){
-        return str.slice(str.indexOf(' ') + 1)
-    }
-
-    const isNum = function(str){
-        return getLog(str).match(/\d/)
-    }
-
-    const compare = function(a,b) {
-        let result = getLog(a).localeCompare(getLog(b))
-        return result !== 0 ? result : a.localeCompare(b)
-
-    }
-
-    logs.forEach(log => {
-        isNum(getLog(log)) ? digitLogs.push(log) : letterLogs.push(log)
-
-    })
-
-    return [...letterLogs.sort(compare), ...digitLogs]
-}
 
 
 //My first solution: works but is slow. See if I can refactor the sort

@@ -28,6 +28,13 @@ grid2 = [
 //also in the dfs apparently you can make 4 different calls of the function and they will all get executed
 //how does this differ from return [call1 && call2] in isValidBST?
 
+// so for this one you go through each row, and for each cell in the row if the value is 1, you increment the island count
+//and then you run a dfs with the row, col and overall grid
+  //in the dfs break if row or col are less than 0, if row reaches grid.length, if col eachs col.length, or if you run into a zero
+  //then switch the current 1 to a 0 and call the dfs once in each of the 4 directions, this way the dfs will run until each call to the recursive search is with a 0 element
+
+//at the end, return the count
+
 function numIslandsMyTry(grid) {
     let rows = grid.length
     let cols = grid[0].length
