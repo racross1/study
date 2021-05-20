@@ -30,21 +30,11 @@ let needle3 = ""
 // Output: 0
 
 
-var strStr = function(haystack, needle) {
-    if (needle.trim().split('').length === 0){
-        return 0
-    } else {
-        var re = new RegExp(needle)
-        if (haystack.match(re)) {
-            return haystack.match(re)['index']
-        } else {
-            return -1
-        }
-    }
-    
-};
 
 // Super quick and elegant one using substring
+//checks if haystack at current index of for loop == first character of needle
+//if it does, assigns a temp variable with haystack substring starting at the needle and going to the length of the substring
+//if temp variable equals the needle, that's your answer
 
 var strStr = function(haystack, needle) {
     if (haystack === needle || needle === "") {
@@ -62,3 +52,18 @@ var strStr = function(haystack, needle) {
 };
 
 console.log(strStr(haystack3, needle3))
+
+//this one uses regex. see above for one that doesn't
+var strStr = function(haystack, needle) {
+    if (needle.trim().split('').length === 0){
+        return 0
+    } else {
+        var re = new RegExp(needle)
+        if (haystack.match(re)) {
+            return haystack.match(re)['index']
+        } else {
+            return -1
+        }
+    }
+    
+};

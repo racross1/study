@@ -24,47 +24,67 @@ let k2 = 4
  * @return {number}
  */
 
-//start with sorting and getting kth element. see if a way to optimize
-//for some reason this approach beat 99% on both time and space?
- var findKthLargest = function(nums, k) {
-     return nums.sort((a,b) => b - a)[k - 1]
-};
+
 
 console.log(findKthLargest(nums1, k1))
 
 //my implementation with quick select
 var findKthLargest = function(nums, k) {
+    //quickselect of nums with initial start at 0, initial end at last element, and k as the target
     return quickSelect(nums, 0, nums.length - 1, k);
 
 };
 
 function quickSelect(arr, start, end, k) {
+    //first partition is with last value as pivot
     const pivotIndex = partition(arr, start, end);
+    //index of k in a sorted array will be array.length - k (since it is kth largest)
     const indexOfK = arr.length - k
     
     //I kept most of the quick select below but changed this part to be more intuitive to me
+    //if the expected index of k is to the right of the current pivot run the quick select on the right side of the partition
    if (indexOfK > pivotIndex) {
     return quickSelect(arr, pivotIndex + 1, end, k);
+    //otherwise if the expected index of k is to the left of the pivot index, run quick select on the left side of the array
 } else if (indexOfK < pivotIndex) {
     return quickSelect(arr, start, pivotIndex - 1, k);
 }
+
+//once the two above if statements aren't true (this will mean the pivot index = the expected index of k)
+//return the value at the pivot index.
 return arr[pivotIndex];
 };
 
 function partition(arr, start, end) {
 
+//pivot = last item in the array
 const pivot = arr[end];
+
+//i is start of range (on first iteration this is start of the array)
 let i = start;
+//j is element right next to the pivot (which is the end of the range)
 let j = end - 1;
 
+//while i is less than or at j
 while(i <= j) {    
     //moving i and j from separate ends in order to cut down on time
+    //if the value at this index of i is less than the value of the pivot
+    //increment i (it is now pointing to the most recent higher than pivot)
     while (arr[i] < pivot) {
         i += 1;
     } 
+
+    //while array at index j is greater than the pivot value
+    //move j inwards
     while (arr[j] > pivot) {
         j -= 1;
     }
+
+    //if index i is less than or equal to index j
+    //swap the elements at i and j. This will swap the first (and each successive instance where an item less than and greater than the 
+    //pivot value are swapped accordingly)
+    //after those are swapped, move i to the right and j to the left to keep going.
+    //if these pointers haven't met yet, the outer while loop will continue
     if(i <= j) {
         swap(arr, i, j);
         i += 1;
@@ -79,7 +99,7 @@ swap(arr, i, end);
 // return the final index where the pivot value is.
 return i;
 }
-
+//swap function
 function swap(arr, i, j) {
 [arr[i], arr[j]] = [arr[j], arr[i]];
 }
@@ -246,4 +266,13 @@ var findKthLargest = function(nums, k) {
     for(let n of nums) minHeap.add(n);
     
     return minHeap.remove();
+};
+
+
+//my original solution. Slow relative to heap and quick select versions
+
+//start with sorting and getting kth element. see if a way to optimize
+//for some reason this approach beat 99% on both time and space?
+var findKthLargest = function(nums, k) {
+    return nums.sort((a,b) => b - a)[k - 1]
 };

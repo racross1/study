@@ -41,6 +41,101 @@
  * @return {number}
  */
 
+//my own implementation was based on a misunderstanding of the problem.
+
+//here are 3 recursive solutions with a similar approach (second one with comments). All seem to use DFS
+
+
+
+var maxPathSum = function(root) {
+    var max = -Number.MAX_VALUE;
+    getMaxSum(root);
+    return max;
+    function getMaxSum(node) {
+      if (!node) return 0;
+      var leftSum = getMaxSum(node.left);
+      var rightSum = getMaxSum(node.right);
+      max = Math.max(max, node.val + leftSum + rightSum);
+      return Math.max(0, node.val + leftSum, node.val + rightSum);
+    }
+  };
+
+  
+
+
+  /**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxPathSum = function(root) {
+    var max = -Infinity // Initialize to a very small number to handle a path of negative values
+    getMaxSum(root) // Call our recursive fn to start the program
+    
+    return max // Once we have popped out of our recursive calls, `max` contains our maximum path sum
+    
+    function getMaxSum(tree) {
+      if (tree == null) { return 0 } // Termination condition
+      
+      const leftBranch = Math.max(0, getMaxSum(tree.left)) // calculate the root to leaf sum where root is the left node
+      const rightBranch = Math.max(0, getMaxSum(tree.right)) // calculate the root to leaf sum where root is the right node
+      const currentPath = leftBranch + tree.val + rightBranch  // Sum the path: left -> root -> right (leaf to leaf)
+      
+      max = Math.max(max, currentPath) // if the current path is greater than the previous value of `max`, update `max` to the current path sum
+      return tree.val + Math.max(leftBranch, rightBranch)
+    }
+  };
+
+
+
+  var maxPathSum = function(root) {
+    
+    let max = -Infinity;
+    
+    function dfs(node) {
+        if(!node) return 0;
+        
+        let left = dfs(node.left);
+        let right = dfs(node.right);
+        
+        max = Math.max(
+            left + right + node.val,
+            left + node.val,
+            right + node.val,
+            node.val,
+            max
+        );
+        
+        return Math.max(left + node.val, right + node.val, node.val);
+        
+    }
+    
+    dfs(root);
+    
+    return max;
+    
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //pretty sure this solution of mine works for my prior understanding of the problem 
 //which was that a "path" only referred to a root and its 2 nodes. 
 //the below collects all roots and its 2 leaves and then uses Kadane's algorithm to get the max sum
