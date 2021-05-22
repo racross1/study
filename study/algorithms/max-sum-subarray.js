@@ -1,8 +1,8 @@
 // Max sum of subarray
 
 // Great explanation of Kadan’s algo here:
-// https://www.youtube.com/watch?v=86CQq3pKSUw
-
+// 
+'https://www.youtube.com/watch?v=86CQq3pKSUw'
 // Kadane’s Algorithm
 
 let array = [1, -1, 5, 3, -7, 4, 5, 6, -100, 4]
