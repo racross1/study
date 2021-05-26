@@ -45,6 +45,8 @@
 //  * @param {number} n
 //  * @return {ListNode}
  */
+
+
 var removeNthFromEnd = function(head, n) {
     let p1 = head
     if (!p1.next) {
@@ -52,27 +54,34 @@ var removeNthFromEnd = function(head, n) {
         return head
    }
    
+   //offset the second pointer by the number from the end (p1 and p2 will both advance at the same rate)
     let p2 = offsetPointer(head, n)
     
+    //if offset of p2 sends you past the end of the linked list just return head.next
     if (!p2) {
         head = p1.next
         return head
     }
 
+    //while p2.next is on the board, advance
     while (p2 !== null && p2.next !== null){
         p1 = p1.next
         p2 = p2.next
 
     }
  
+    //p2 pointer has reached the last node which is [0 or 1] from last. so pointer 1 needs to hop over the node in front of it
+    //which is kth to last
    p1.next = p1.next.next
 
+   //return new linked list
     return head
 
 };
 
 var offsetPointer = function(head, n){
-   let i = 1
+   //i at one I think because linked lists start at index 0?
+    let i = 1
    let p2 = head
    while (i <= n) {
        p2 = p2.next

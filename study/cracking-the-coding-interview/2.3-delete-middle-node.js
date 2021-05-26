@@ -83,7 +83,8 @@ var middleNode = function(head) {
 
 //remove middle node
 
-//add prev pointer to be previous of the slow pointer so that you can set prev.next to prev.next.next, effectively removing middle node
+//add prev pointer to be previous of the slow pointer so that you can set prev.next to prev.next.next, 
+//effectively removing middle node
 
 var removeMiddleNode = function(head) {
     let fast = slow = head;
