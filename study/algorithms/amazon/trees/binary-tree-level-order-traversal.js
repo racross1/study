@@ -31,27 +31,8 @@
 //implementation of one with a queue below
 
 //this one here uses recursive call to level order traversal
-//for each call increments level
- var levelOrder = function(root) {
-     let result = []
+//for each call increments level and either starts a new empty array for that level, or pushes into the existing one
 
-     function lot(root, l){
-         if(!root) return 
-
-         if (result[l]){
-             result[l].push(root.val)
-         } else {
-             result[l] = [root.val]
-         }
-
-         lot(root.left, l+1)
-         lot(root.right, l+1)
-     }
-
-     lot(root, 0)
-    
-     return result
-};
 
 ///////////implementation from discussion with queue
 // We can use an inner for loop at each iteration of the while loop. 
