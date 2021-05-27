@@ -1,4 +1,6 @@
 /* Queues */
+
+//note priority queue implementation
 //video:
 'https://www.youtube.com/watch?v=bK7I79hcm08'
 
