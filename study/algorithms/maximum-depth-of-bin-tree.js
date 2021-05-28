@@ -76,17 +76,17 @@ var shortestPathBinaryMatrix = function(grid) {
  * @param {TreeNode} root
  * @return {number}
  */
- var maxDepth = function(root) {
-    if (!root) return 0
+//  var maxDepth = function(root) {
+//     if (!root) return 0
     
-    let stack = [{node: root, depth: 1}]
+//     let stack = [{node: root, depth: 1}]
 
-    while (stack.length){
-        if (root)
+//     while (stack.length){
+//         if (root)
 
 
-    }
+//     }
 
-    //get depths of each
+//     //get depths of each
     
-};
+// };
