@@ -147,12 +147,15 @@ class Node {
             return right + 1;
         };
     }
+
+
     inOrder() {
       if (this.root == null) {
         return null;
       } else {
         var result = new Array();
-        function traverseInOrder(node) {       
+        function traverseInOrder(node) {
+          //these 3 lines are the only thing that differs between in order preorder and post order       
           node.left && traverseInOrder(node.left);
           result.push(node.data);
           node.right && traverseInOrder(node.right);
