@@ -1,4 +1,4 @@
-
+'https://leetcode.com/problems/binary-tree-preorder-traversal/submissions/'
 
 /**
  * Definition for a binary tree node.
@@ -32,3 +32,22 @@ var preorderTraversal = function(root) {
     return result
     
 };
+
+
+// version of the above using stack instead of recursive function
+//you can see it's so similar and instead of recursing the function just pushes the left and right nodes onto the stack
+
+
+var preorderTraversal = function(root) {
+    if (!root) return [];
+    var result = [];
+    var stack = [root];
+    
+    while(stack.length) {
+      var node = stack.pop();
+      result.push(node.val);
+      if (node.right) stack.push(node.right);
+      if (node.left) stack.push(node.left);
+    }
+    return result;
+  };
