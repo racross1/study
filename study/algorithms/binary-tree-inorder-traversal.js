@@ -20,21 +20,21 @@
     //create result arr
     let result = []
     
-    function inOrderTraversal(node){
+    function traverse(node){
         //if node is null return. This will mean once you get to the end of the tree
         if(!node) return 
         
         //if node.left exists, recursive call to left node
-        node.left && inOrderTraversal(node.left)
+        node.left && traverse(node.left)
         //once it's gotten to the bottom of this left subtree (i.e. there is no node.left), 
         //push the data of this node to the results table
         result.push(node.val)
         //after the above (i.e. after checked if this node has left leaves, pushed this node itself to result)
         //if there's a node.right (after you've pushed the node itself since the order for this is lnr) call this function for node.right 
-        node.right && inOrderTraversal(node.right)
+        node.right && traverse(node.right)
     }
     
-    inOrderTraversal(root)
+    traverse(root)
     
     return result
     
