@@ -100,6 +100,8 @@ function isMirror(p, q) {
         // and scan tree t from right to left
         s1.push(n1.left); s1.push(n1.right);
         s2.push(n2.right); s2.push(n2.left);
+
+        
     }
 
     return true;
