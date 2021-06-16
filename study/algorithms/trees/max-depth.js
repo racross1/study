@@ -13,6 +13,24 @@ function TreeNode(val, left, right) {
 // def max_depth(root)
 //   root ? 1 + [max_depth(root.left), max_depth(root.right)].max : 0
 // end
+//my latest solution:
+var maxDepth = function(root) {
+    let depth = 0
+
+    function dfs(root, level) {
+        if (!root) return 
+        
+        if (level > depth) depth = level
+        
+        dfs(root.left, level + 1)
+        dfs(root.right, level + 1)
+        
+    }
+    
+    dfs(root,1)
+    return depth
+    
+};
 
 
 
