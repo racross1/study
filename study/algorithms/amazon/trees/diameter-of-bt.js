@@ -12,19 +12,31 @@ function TreeNode(val, left, right) {
 
 
 //my implementation of the first solution below
-var diameterOfBinaryTree = function(root) {
+var diameterOfBinaryTreeFinal = function(root) {
     if (!root) return 0
     let max = 0
+    let call = 0
 
     const maxDepth = function(node) {
+        call++
+        console.log('call #: ', call)
+        console.log('node: ', node)
+        
         if (!node) return 0
+        
         
         let left = maxDepth(node.left)
         let right = maxDepth(node.right)
+        // console.log('left.val: ', left.val)
+        // console.log('right.val: ', right.val)
+        console.log('left: ', left)
+        console.log('right: ', right)
         
         max = Math.max(max, left + right)
+        console.log('max: ',max)
+        console.log('Math.max(left, right) + 1: ', Math.max(left, right) + 1)
         return Math.max(left, right) + 1
-         
+
     }
     
     maxDepth(root)
@@ -32,19 +44,20 @@ var diameterOfBinaryTree = function(root) {
     
 };
 
-root = new TreeNode(3);
-root.left = new TreeNode(9);
-root.right = new TreeNode(20);
-root.right.left = new TreeNode(15);
-root.left.right = new TreeNode(7);
+root = new TreeNode(1);
+root.left = new TreeNode(2);
+root.right = new TreeNode(3);
+root.left.left = new TreeNode(4);
+root.left.right = new TreeNode(5);
 
+console.log(diameterOfBinaryTreeFinal(root))
 
 //____________________
 
 
 
 
-function diameterOfBinaryTree(root) {
+function diameterOfBinaryTree1(root) {
     let max = 0
      
      function maxDepth(root) {
@@ -62,7 +75,7 @@ function diameterOfBinaryTree(root) {
 
 
 
-var diameterOfBinaryTree = function(root) {
+var diameterOfBinaryTree2 = function(root) {
     let diameter = 0;
     
     dfs(root);
@@ -101,7 +114,7 @@ const countDiameter = root => {
    * @param {TreeNode} root
    * @returns {number}
    */
-  const diameterOfBinaryTree = root => {
+  const diameterOfBinaryTree3 = root => {
     if (!root) return 0;
   
     const center = countDiameter(root.left) + countDiameter(root.right);
@@ -119,7 +132,7 @@ const countDiameter = root => {
  * @param {TreeNode} root
  * @return {number}
  */
- const diameterOfBinaryTree = root => {
+ const diameterOfBinaryTree4 = root => {
     const helper = root => {
       if (!root) {
         return 0;
@@ -143,7 +156,7 @@ const countDiameter = root => {
 'https://www.youtube.com/watch?v=PYvqkhp5-48'
   // Time: O(n)
 // Space: worst O(n) for call stack
-var diameterOfBinaryTree = function(root) {
+var diameterOfBinaryTree5 = function(root) {
     // return [diameter, height]
     const walk = (node) => {
         
