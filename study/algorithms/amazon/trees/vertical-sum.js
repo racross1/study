@@ -71,7 +71,9 @@ console.log(verticalTraversal(root))
 
 
 //This implementation from discussion, with person's notes
-    //gets x coord, y coord, and val for each node
+    //gets x coord, y coord, and val for each node and sorts according to those
+    //challenge: change up mine to incorporate and sort by the info below?
+    
 
 
 //:
