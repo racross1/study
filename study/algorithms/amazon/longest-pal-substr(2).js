@@ -72,7 +72,7 @@ function expandAroundCenter2(s, left, right) {
         leftBound--;
         rightBound++;
     }
-    console.log("expand return " + (L+1) + ":" + (R-1));
+    console.log("expand return " + (Lleft+1) + ":" + (right-1));
     //return on greater than left and one greater than right since the loop ended with them failing the conditions
     return [leftBound + 1, rightBound - 1];
 }
