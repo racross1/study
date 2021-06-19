@@ -18,6 +18,13 @@
 //next solution will be to try DFS, keep track of all paths and then use Kadane's algo again to find max
 
 
+// root = new TreeNode(1);
+// root.left = new TreeNode(2);
+// root.right = new TreeNode(3);
+// root.left.left = new TreeNode(4);
+// root.left.right = new TreeNode(5);
+
+// console.log(diameterOfBinaryTreeFinal(root))
 
 
 
