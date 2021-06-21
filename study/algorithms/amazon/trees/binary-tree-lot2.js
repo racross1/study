@@ -11,7 +11,7 @@ root.right.left = new TreeNode(15);
 root.right.right = new TreeNode(7);
 
 
-
+console.log(root)
 
 //my latest submission
 var levelOrder = function(root) {
