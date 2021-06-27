@@ -81,7 +81,8 @@ while(i <= j) {
     }
 
     //if index i is less than or equal to index j
-    //swap the elements at i and j. This will swap the first (and each successive instance where an item less than and greater than the 
+    //swap the elements at i and j. 
+    //This will swap the first (and each successive instance where an item less than and greater than the 
     //pivot value are swapped accordingly)
     //after those are swapped, move i to the right and j to the left to keep going.
     //if these pointers haven't met yet, the outer while loop will continue
