@@ -20,9 +20,42 @@ let nums1 = [-10,-3,0,5,9]
 //find the middle --> that is the root
 //do this for subtrees left and right
 
+//for each node 
+ //new node (val)
+ //new node.left = array to left of node 
+
+ //base case if node === null return 
+
 
 var sortedArrayToBST = function(nums) {
-    console.log(nums)
+    //check if nums 
+    if (!nums) return null
+
+    return buildBST (nums, 0, nums.length - 1)
+
+    function buildBST(nums, start, end){
+        if (start > end) return null
+        let mid = Math.floor(start + ((end - start) / 2))
+        
+        let root = new TreeNode(nums[mid])
+
+        root.left =  buildBST(nums, start, mid - 1)
+        root.right = buildBST(nums, mid + 1, end)
+
+        return root
+    }
+
+//initial call with start and end
+
+//recursive function - accepts start and end params
+    //base case: if start < 0 || end > nums.length - 1
+    //get mid 
+
+    //set new node to middle of array given
+    //new Node.left = function(start, middle - 1)
+    //new node.right - function (middle + 1, end)
+
+   
 }
 
 sortedArrayToBST(nums1)
