@@ -7,11 +7,13 @@
 //a path from the top-left cell (i.e., (0, 0)) to the bottom-right cell (i.e., (n - 1, n - 1)) such that:
 
     // All the visited cells of the path are 0.
-    // All the adjacent cells of the path are 8-directionally connected (i.e., they are different and they share an edge or a corner).
+    // All the adjacent cells of the path are 8-directionally connected (i.e., 
+    // they are different and they share an edge or a corner).
     // The length of a clear path is the number of visited cells of this path.
 
 //NOTES ON THIS PROBLEM
-// Here is the pseudocode that puts all of this together. This function is reusable for many grid problems (usually without the 4 diagonal directions). You should be very familiar with this algorithm and be able to implement it in your programming language of choice very quickly.
+// Here is the pseudocode that puts all of this together. 
+//This function is reusable for many grid problems (usually without the 4 diagonal directions). You should be very familiar with this algorithm and be able to implement it in your programming language of choice very quickly.
 
 
 // directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
@@ -98,6 +100,13 @@
   };
 
 
+
+
+
+
+
+
+
   //my implementation of the above (not working)
   var shortestPathBinaryMatrix = function(grid) {
     if (grid[0][0] === 1) return -1
@@ -110,7 +119,8 @@
     grid [0][0] = 1
     
     while(queue.length){
-        let {coord:[x,y], dist} = queue.shift()
+        let curr = queue.shift()
+        console.log(curr)
         
         if(x === N-1 && y === N-1) {
             return dist
@@ -130,3 +140,4 @@
     return -1
     
 };
+
