@@ -23,9 +23,17 @@ function reverseList(head){
     let next = null 
 
     while(head != null){
+        //assign next to node after head to keep track of it
         next = head.next
+
+        //head.next = prev (null)
+        //sever it
+        //head.next is what was previously previous
         head.next = prev
+        
+        //prev = head
         prev = head
+        //new head is the temp var we initially stored at next ()
         head = next
     }
 

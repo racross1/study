@@ -1,13 +1,15 @@
-//overall idea: 
-//1. get potential palindrome center at current index - so as many characters as are equal to each other, 
+//LONGEST PAL SUBSTRING
+//1. Helper assigned to var = get potential palindrome center at current index - so as many characters as are equal to each other, 
 //because can be center of palindrome
     ////if center is just single char, the while loop will increment the right pointer once and so you return left, right - 1, which == c or the center char you supplied
-//2. get bounds of palindrome around current center
+//2. Helper assigned to varget bounds of palindrome around current center
     //while left pointer is >= 0 and right pointer is less than string.length 
     //(basically pointers are staying on string) and also s at left === s at right
     //decrement left pointer and increment right pointer
-//3. with the bounds you got above in expand around center, check if right bound - left bound found above is greater than length of current right and left.
+//3. with the bounds you got above in expand around center, check if right bound - left bound found above 
+//is greater than length of current right and left.
     //if it is, reassign start and end to left and right
+//4. return s.substring(start, end+1)
 
 
 // Example 1:
@@ -49,9 +51,6 @@ let s4 = "ac"
 
          let left = bounds[0]
          let right = bounds[1]
-
-        //  console.log('left', left)
-        //  console.log('right', right)
 
          if (right - left > end - start){
              start = left

@@ -20,11 +20,14 @@ let t3 = "aa"
 // Since the largest window of s only has one 'a', return empty string.
 
 
-
-//initiate tracking vars
+//MIN WINDOW SUBSTRING
+//initiate tracking vars: charsneeded {}, charsseen{}, chars missing int
 //loop through tracking vars to give them starting vals (count needed in needed hashmap, 0 for counter and seen)
 
-//for loop with fast pointer moving to the right while it's < string.length
+//initiate slow and fast pointers at 0
+//initiate result at -infinity and infinity
+
+//for loop with fast pointer moving to the right while it's less than string.length
     //within for loop:
     //check each char
         //if char is in seen chars hash, increment value of it
@@ -36,7 +39,10 @@ let t3 = "aa"
             //if it is, decrement in seen, and compare to needed
                 //if its count in seen is < count in needed
                 //increment missing counter (which will break slow pointer loop)
-                //and increment slow counter no matter what - the above done because incrementing slow counter will remove that char from subarray
+                //and increment slow counter no matter what - the above done because 
+                //incrementing slow counter will remove that char from subarray
+
+    //return  result[0] === -Infinity ? '' : s.slice(result[0], result[1] + 1)
 
 
 

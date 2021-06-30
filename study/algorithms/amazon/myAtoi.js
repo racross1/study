@@ -38,13 +38,11 @@ console.log(myAtoi(s4))
     let i = 0;
     let res = 0;
     let isNegative = false;
-    
     // 1. Skip spaces
     //could also trim here
     while (str[i] === ' ') {
         i += 1;
     }
-    
     // 2. Optional +/-
     const maybeSign = str[i];
     if (maybeSign === '+' || maybeSign === '-') {
