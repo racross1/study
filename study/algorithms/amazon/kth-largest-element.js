@@ -28,6 +28,40 @@ let k2 = 4
 
 console.log(findKthLargest(nums1, k1))
 
+//FIND KTH LARGEST WITH QUICKSELECT
+//quickselect
+    //args: arr, start, end, k
+    //get pivot index (helper function)
+    //initiate index of k of sorted array
+    //if index of k is after pivot index, run partition function with arr, current pivot + 1, end and k
+    //otherwise if index of K is before pivotindex, run partition function for (arr, start, pivot - 1 and k)
+    //once the above 2 ifs aren't true we want to return the current index, because that means current pivot = k
+//parition helper 
+    //args: arr, start, end
+    //pivot = arr[end]
+    //initiate your pointers i and j at either end: i at start, and j at end - 1 (our pivot is the end of the arr)
+    //while i <=j
+        //while arr[i] < pivot i++ (move swap index forward)
+        //while arr[i] > pivot j-- (move swap index backwards)
+
+        //if index i is less than or equal to index j
+        //swap the elements at i and j. 
+        //in the above you're movine the pointers for as long as i is less than pivot and j is greater than pivot
+        //so you need to swap if i < j because that means they need to go on dif sides of the pivot
+        //This will swap the first (and each successive instance where an item less than and greater than the 
+        //pivot value are swapped accordingly)
+        //after those are swapped, move i to the right and j to the left to keep going.
+        //if these pointers haven't met yet, the outer while loop will continue
+
+        //after all those while loops exhausted, swap pivot with current i
+
+        //after pivot swapped into prior i position you have the final index of the pivot. return it
+            // i.e. return the final index where the pivot value is.
+
+//swap helper
+    //[arr[i], arr[j]] = [arr[j], arr[i]];
+
+
 //my implementation with quick select
 var findKthLargest = function(nums, k) {
     //quickselect of nums with initial start at 0, initial end at last element, and k as the target

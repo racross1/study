@@ -38,9 +38,7 @@ let s2 = "race a car"
              left++
          }
      }
-
     return true
-
 };
 
 

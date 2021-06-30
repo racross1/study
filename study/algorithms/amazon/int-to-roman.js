@@ -101,7 +101,7 @@ function intToRoman(num) {
 
 //creates array of arrays for each digit. 
 
-function intToRoman(num) {
+function intToRoman3(num) {
     var hash = [
         ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
         ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
@@ -113,7 +113,11 @@ function intToRoman(num) {
     var counter = 0;
     while (num > 0) {
         //result is array at row of counter (incrementing) in col of num % 10 (so remainder of the digit itself when divided by 10)
-        result = hash[counter++][num % 10] + result;
+        console.log('result', result)
+        result = hash[counter][num % 10] + result;
+        
+        counter++
+       
 
         //next num in this loop is the next tens digit - num / 10 with any remainder cut off.
         num = Math.floor(num / 10);
@@ -123,7 +127,8 @@ function intToRoman(num) {
 };
 
 
-console.log(intToRoman(num1))
-console.log(intToRoman(num2))
-console.log(intToRoman(num3))
-console.log(intToRoman(num4))
+// console.log(intToRoman3(num1))
+// console.log(intToRoman3(num2))
+// console.log(intToRoman3(num3))
+// console.log(intToRoman3(num4))
+console.log(intToRoman3(num5))
