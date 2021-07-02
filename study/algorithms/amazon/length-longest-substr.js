@@ -47,6 +47,22 @@ const s7 = "dvdf"
 
 //this is the one I understand best - notes on implementation below. I implemented with posIndex renamed to currIdxMaxStr
 //result appears to be slow relative to other submissions but it's the one that's easiest for me to understand.
+
+
+//LENGTH OF LONGEST SUBSTRING
+//initialize maxlength, maxstr, tempStr, and index
+
+//loop through string starting at 0. 
+//assign temp string to char at index of i
+//assign posIndex var to index of tempstr in max str
+//check posIndex is not -1, that means you've found that letter in the current max string
+//with this you want to start a new maxstr starting at the index in maxstr after your current pos index
+
+//after that add temp str to max str
+//then maxLen = Math.max(maxLen, maxStr.length)
+
+//after loop is complete return maxLen
+
  var lengthOfLongestSubstring1 = function(s) {
     console.log('original str: ', s)
     var sLen = s.length,
