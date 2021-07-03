@@ -1,4 +1,4 @@
-import moment from 'moment';
+var moment = require('moment')
 
 let transactions = [
     { "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" },
@@ -9,7 +9,16 @@ let transactions = [
 ]
 
 function sortTrans(transactions){
-    return transactions.sort((a,b) => a["timestamp"] > b["timestamp"] ? 1 : -1)
+    transactions = transactions.sort((a,b) => a["timestamp"] > b["timestamp"] ? 1 : -1)
+    transactions = timeConvert(transactions)
+
+    return transactions
+}
+
+function timeConvert(transactions){
+    transactions.forEach(t => t["timestamp"] = moment(t["timestamp"]).format('MMMM Do YYYY, h:mm:ss a'))
+    // return transactions.map(t => t["timestamp"] = moment(t["timestamp"]).format('MMMM Do YYYY, h:mm:ss a'))
+    return transactions
 }
 
 
@@ -47,5 +56,5 @@ console.log('transactions: ', transactions)
 console.log('sorted: ', sortTrans(transactions))
 console.log('payer balances: ', payerBalances(transactions))
 
-console.log('time convert: ', moment("2018-04-01T00:00:00Z").format('MMMM Do YYYY, h:mm:ss a'))
+// console.log('time convert: ', moment(transactions[0]["timestamp"]).format('MMMM Do YYYY, h:mm:ss a'))
 

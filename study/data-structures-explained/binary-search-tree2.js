@@ -1,13 +1,15 @@
 //from this video
 'https://www.youtube.com/watch?v=6JeuJRqKJrI'
 
+//repl with code:
+'https://replit.com/@beiatrix/NoisyAridWamp'
+
 class Node {
     constructor(val){
         this.val = val
         this.left = null
         this.right = null
     }
-
 }
 
 class BST{
