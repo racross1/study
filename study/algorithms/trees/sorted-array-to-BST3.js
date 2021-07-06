@@ -45,16 +45,6 @@ var sortedArrayToBST = function(nums) {
         return root
     }
 
-//initial call with start and end
-
-//recursive function - accepts start and end params
-    //base case: if start < 0 || end > nums.length - 1
-    //get mid 
-
-    //set new node to middle of array given
-    //new Node.left = function(start, middle - 1)
-    //new node.right - function (middle + 1, end)
-
    
 }
 
