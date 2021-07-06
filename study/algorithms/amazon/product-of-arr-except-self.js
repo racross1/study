@@ -1,3 +1,7 @@
+//Given an integer array nums, 
+//return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+
 //solutions seem to involve left and right pointers moving towards center
 
 var productExceptSelf = function(nums) {

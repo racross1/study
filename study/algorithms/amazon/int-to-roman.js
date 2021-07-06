@@ -115,10 +115,7 @@ function intToRoman3(num) {
         //result is array at row of counter (incrementing) in col of num % 10 (so remainder of the digit itself when divided by 10)
         console.log('result', result)
         result = hash[counter][num % 10] + result;
-        
         counter++
-       
-
         //next num in this loop is the next tens digit - num / 10 with any remainder cut off.
         num = Math.floor(num / 10);
     }

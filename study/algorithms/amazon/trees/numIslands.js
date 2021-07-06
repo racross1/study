@@ -42,8 +42,11 @@ function numIslandsMyTry(grid) {
 
     for (let row = 0; row < rows; row++){
         for (let col = 0; col < cols; col++){
+          //for each cell if the value is 1
             if (grid[row][col] === "1"){
-                count++
+              //increment island count  
+              count++
+              //run dfs with current cell
                 dfs(row, col, grid)
 
             }
@@ -51,10 +54,14 @@ function numIslandsMyTry(grid) {
     }
 
     function dfs(row, col, grid){
-        if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || grid[row][col] === "0") return 
+      //if out of bounds or cell val is equal to 0 return (will return once we get to bottom of call stack)
+      //basically we are finding the edges of this island  
+      if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || grid[row][col] === "0") return 
 
+      //overwrite to 0 so that it doesn't get double counted
         grid[row][col] = "0"
 
+        //run dfs in each direction
         dfs(row+1, col, grid)
         dfs(row-1, col, grid)
         dfs(row, col+1, grid)
