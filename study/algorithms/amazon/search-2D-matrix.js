@@ -29,21 +29,43 @@
 start[0][0]
 end[matrix.length - 1][matrix[0].length - 1]
 
-midRow =  startRow  - endRow / 2
-midCol = startCol - endCol / 2
+midRow =  startRow + (startRow  - endRow) / 2
+midCol = startCol + (startCol - endCol) / 2
+
+midpoint = matrix[midRow][midCol]
+
+submatrix1: same row or higher: col must be less
+submatrix2: lower row any
 
  var searchMatrix = function(matrix, target) {
      //get midpoint
      //process 2 separate subarrays
 
-     let rowStart = 0
-     let colStart = 0
-     let rowEnd = matrix.length - 1
-     let colEnd = matrix[0].length - 1
+     let startRow = 0
+     let startCol = 0
+     let endRow = matrix.length - 1
+     let endCol = matrix[0].length - 1
 
-     helper(rowStart, colStart, rowEnd, colEnd){
-         let mid = 
+     helper(matrix, target, startRow, startCol, endRow, endCol){
+        let midRow =  startRow + (endRow  - startRow) / 2
+        let midCol = startCol + (endCol - startCol) / 2
+
+        let midVal = matrix[midRow][midCol]
+
+        if (midVal === target) {
+            return true
+        } 
+
+        if (midVal > target) {
+            //recursively call the left 2 subarrays
+            return helper(matrix, target, )
+
+        } else {
+
+        }
+
+
      }
 
-     //helper(rowStart, colStart, rowEnd, colEnd)
+     return helper(rowStart, colStart, rowEnd, colEnd)
 };
