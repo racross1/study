@@ -58,7 +58,7 @@ submatrix2: lower row any
 
         if (midVal > target) {
             //recursively call the left 2 subarrays
-            return helper(matrix, target, )
+            return helper(matrix, target, midRow, midCol + 1, endRow, endCol )
 
         } else {
 
