@@ -19,23 +19,23 @@
 //  Output: true
 
 
-[
-    [1, 3,  5, 7],
-    [10,11,16,20],
-    [23,30,34,60]
-]
+// [
+//     [1, 3,  5, 7],
+//     [10,11,16,20],
+//     [23,30,34,60]
+// ]
 
 
-start[0][0]
-end[matrix.length - 1][matrix[0].length - 1]
+// start[0][0]
+// end[matrix.length - 1][matrix[0].length - 1]
 
-midRow =  startRow + (startRow  - endRow) / 2
-midCol = startCol + (startCol - endCol) / 2
+// midRow =  startRow + (startRow  - endRow) / 2
+// midCol = startCol + (startCol - endCol) / 2
 
-midpoint = matrix[midRow][midCol]
+// midpoint = matrix[midRow][midCol]
 
-submatrix1: same row or higher: col must be less
-submatrix2: lower row any
+// submatrix1: same row or higher: col must be less
+// submatrix2: lower row any
 
  var searchMatrix = function(matrix, target) {
      //get midpoint
