@@ -56,17 +56,23 @@
             return true
         } 
 
-        if (midVal > target) {
+        if (midVal < target) {
             //recursively call the left 2 subarrays
-            return helper(matrix, target, midRow, midCol + 1, endRow, endCol) 
+            //first is less so want left 2 subarrays
+            //left subarr 1 = 
+                //less row, any coll
+                //same row or greater less col
+            return helper(matrix, target, midRow - 1 , startCol, midRow, endCol) || helper(matrix, target, startRow , startCol - 1, midRow, endCol)
 
         } else {
-            console.log('yay')
+            return helper(matrix, target, midRow + 1 , startCol, endRow, endCol) || helper(matrix, target, midRow , startCol + 1, endRow, endCol)
 
         }
 
 
      }
 
-     return helper(startRow, startCol, endRow, endCol)
+     return helper(matrix, target, startRow, startCol, endRow, endCol)
 };
+
+console.log(searchMatrix)
