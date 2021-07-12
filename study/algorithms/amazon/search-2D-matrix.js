@@ -46,7 +46,7 @@
      let endRow = matrix.length - 1
      let endCol = matrix[0].length - 1
 
-     helper(matrix, target, startRow, startCol, endRow, endCol){
+     function helper(matrix, target, startRow, startCol, endRow, endCol){
         let midRow =  startRow + (endRow  - startRow) / 2
         let midCol = startCol + (endCol - startCol) / 2
 
@@ -58,14 +58,15 @@
 
         if (midVal > target) {
             //recursively call the left 2 subarrays
-            return helper(matrix, target, midRow, midCol + 1, endRow, endCol) || 
+            return helper(matrix, target, midRow, midCol + 1, endRow, endCol) 
 
         } else {
+            console.log('yay')
 
         }
 
 
      }
 
-     return helper(rowStart, colStart, rowEnd, colEnd)
+     return helper(startRow, startCol, endRow, endCol)
 };
