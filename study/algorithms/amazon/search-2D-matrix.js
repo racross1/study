@@ -47,8 +47,10 @@
      let endCol = matrix[0].length - 1
 
      function helper(matrix, target, startRow, startCol, endRow, endCol){
-        let midRow =  startRow + (endRow  - startRow) / 2
-        let midCol = startCol + (endCol - startCol) / 2
+        if (startRow < 0 || startCol < 0 || endRow > matrix.length - 1 || endCol > matrix[0].length - 1) return
+        
+        let midRow =  Math.floor(startRow + (endRow  - startRow) / 2)
+        let midCol = Math.floor(startCol + (endCol - startCol) / 2)
 
         let midVal = matrix[midRow][midCol]
 
@@ -69,10 +71,10 @@
 
         }
 
-
+        return false
      }
 
      return helper(matrix, target, startRow, startCol, endRow, endCol)
 };
 
-console.log(searchMatrix)
+console.log(searchMatrix(matrix1, target1))
