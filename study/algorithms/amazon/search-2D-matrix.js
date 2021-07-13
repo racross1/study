@@ -46,10 +46,16 @@
      let endRow = matrix.length - 1
      let endCol = matrix[0].length - 1
 
+     let call = 1 
+
      function helper(matrix, target, startRow, startCol, endRow, endCol){
-        if (startRow < 0 || startCol < 0 || endRow > matrix.length - 1 || endCol > matrix[0].length - 1) return
+         console.log(call)
+         call++ 
         
-        let midRow =  Math.floor(startRow + (endRow  - startRow) / 2)
+        //looks like base case isn't being met
+         if (startRow < 0 || startCol < 0 || endRow > matrix.length - 1 || endCol > matrix[0].length - 1) return false
+
+        let midRow =  Math.floor(startRow + (endRow - startRow) / 2)
         let midCol = Math.floor(startCol + (endCol - startCol) / 2)
 
         let midVal = matrix[midRow][midCol]
