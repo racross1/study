@@ -53,12 +53,17 @@
          call++ 
         
         //looks like base case isn't being met
-         if (startRow < 0 || startCol < 0 || endRow > matrix.length - 1 || endCol > matrix[0].length - 1) return false
+         if (startRow < 0 || startCol < 0 || endRow > matrix.length - 1 || endCol > matrix[0].length - 1) {
+            return
+         }
 
         let midRow =  Math.floor(startRow + (endRow - startRow) / 2)
+        console.log('midrow', midRow)
         let midCol = Math.floor(startCol + (endCol - startCol) / 2)
+        console.log('midcol', midCol)
 
         let midVal = matrix[midRow][midCol]
+        console.log('midval', midVal)
 
         if (midVal === target) {
             return true
