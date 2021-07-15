@@ -49,7 +49,7 @@
      let call = 1 
 
      function helper(matrix, target, startRow, startCol, endRow, endCol){
-         console.log(call)
+         console.log('call', call)
          call++ 
         
         //looks like base case isn't being met
