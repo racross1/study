@@ -27,6 +27,26 @@
 // 1 <= digits.length <= 100
 // 0 <= digits[i] <= 9
 
+
+// First, I add 1 anyway. If there is a carry-over, the new digit will also add 1. If the current digit is less than 9 then return the array.
+
+// Last, when running over for loop, I just put fill 1 in front of the array.
+
+//another from solutions
+var plusOne = function(digits) {
+    for(var i = digits.length - 1; i >= 0; i--){
+         digits[i]++; 
+        if(digits[i] > 9){
+            digits[i] = 0;
+        }else{
+            return digits;
+        }
+    }
+    digits.unshift(1);
+    return digits;
+    };
+
+
 // mine
 var plusOne = function(digits) {
     if (digits.length === digits.filter(n => n === 9).length){

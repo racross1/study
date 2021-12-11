@@ -19,12 +19,34 @@
 //  Output: true
 
 
+
+
 // [
 //     [1, 3,  5, 7],
 //     [10,11,16,20],
 //     [23,30,34,60]
 // ]
 
+//for target less than mid
+    //subarr1 
+
+        //startRow0 (original start)
+        //endRow = mid
+        //startCol  = 0 (original start)
+        //endCol = 3 (original end)
+    
+    //subarr2
+
+        //startRow = mid
+        //endRow = 2 (original end)
+        //startCol = 0 (original start)
+        //endCol = mid
+
+
+//get mid val
+    //mid row and mid col
+//check midval
+//if greater
 
 // start[0][0]
 // end[matrix.length - 1][matrix[0].length - 1]
@@ -37,6 +59,36 @@
 // submatrix1: same row or higher: col must be less
 // submatrix2: lower row any
 
+var searchMatrix2 = function(matrix, target) {
+    
+    let startRow = 0
+    let startCol = 0
+    let endRow = matrix.length - 1
+    //2
+    let endCol = matrix[0].length - 1
+    //3
+    let call = 1 
+
+   
+
+    return helper(matrix, target, startRow, startCol, endRow, endCol)
+
+    function helper(matrix, target, startRow, startCol, endRow, endCol){
+      console.log('startRow', startRow)
+      console.log('endRow', endRow)
+      console.log('startCol', startCol)
+      console.log('endCol', endCol)
+      
+    }
+
+    
+};
+
+
+
+
+
+
  var searchMatrix = function(matrix, target) {
      //get midpoint
      //process 2 separate subarrays
@@ -44,9 +96,14 @@
      let startRow = 0
      let startCol = 0
      let endRow = matrix.length - 1
+     //2
      let endCol = matrix[0].length - 1
-
+     //3
      let call = 1 
+
+    
+
+     return helper(matrix, target, startRow, startCol, endRow, endCol)
 
      function helper(matrix, target, startRow, startCol, endRow, endCol){
          console.log('call', call)
@@ -57,9 +114,21 @@
             return
          }
 
-        let midRow =  Math.floor(startRow + (endRow - startRow) / 2)
+
+         //start row: 0
+         //end row: 2
+         //start col: 0
+         //end col: 3
+
+
+         //desired midrow:[1]
+         //desired midcol: [2]
+
+        // let midRow =  Math.floor(startRow + (endRow - startRow) / 2) - 1
+        let midRow = Math.floor(matrix.length / 2)
         console.log('midrow', midRow)
-        let midCol = Math.floor(startCol + (endCol - startCol) / 2)
+        // let midCol = Math.floor(startCol + (endCol - startCol) / 2) - 1
+        let midCol = Math.floor(matrix[0].length / 2)
         console.log('midcol', midCol)
 
         let midVal = matrix[midRow][midCol]
@@ -73,7 +142,7 @@
             //recursively call the left 2 subarrays
             //first is less so want left 2 subarrays
             //left subarr 1 = 
-                //less row, any coll
+                //less row, any col
                 //same row or greater less col
             return helper(matrix, target, midRow - 1 , startCol, midRow, endCol) || helper(matrix, target, startRow , startCol - 1, midRow, endCol)
 
@@ -85,7 +154,7 @@
         return false
      }
 
-     return helper(matrix, target, startRow, startCol, endRow, endCol)
+     
 };
 
-console.log(searchMatrix(matrix1, target1))
+console.log(searchMatrix2(matrix1, target1))
