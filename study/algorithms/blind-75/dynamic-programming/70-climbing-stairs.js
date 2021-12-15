@@ -104,7 +104,6 @@ For more optimised solution, we use an Array to keep track of results that have 
 */
 
 var climbStairs4 = function(n, memo = new Array()) {
-    console.log('memo', memo)
     if (n === 1) {
         return 1;
     }
@@ -115,10 +114,11 @@ var climbStairs4 = function(n, memo = new Array()) {
         return memo[n];
     }
    
-    let res = climbStairs(n-1, memo) + climbStairs(n-2, memo);
+    console.log('memo before res assign', memo)
+    let res = climbStairs4(n-1, memo) + climbStairs4(n-2, memo);
     console.log('res after assign:',res)
     memo[n] = res;
-    console.log('res after memo entry assign:', res)
+    console.log('memo after memo entry assign:', memo)
     return res;
     // T.C: O(N)
     // S.C: O(N)
