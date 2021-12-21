@@ -39,7 +39,7 @@
 //fromthis video: https://www.youtube.com/watch?v=1R0_7HqNaW0
 //it's for java but may be a more intuitive solution
 
-//basically create dp array and fill with inifinty
+//create dp array and fill with inifinty
 //sub problem will be to loop through all amounts leading up to amount and get least number of coins for that amount
 //to do that
 //loop through the coin combo for each amount (outer loop current amount, inner loop coin)
@@ -93,7 +93,7 @@ function coinChange2(coins,amount){
     return dp[amount] === Infinity ? -1 : dp[amount] 
 }
 
-//on the above you can also do a small optimization
+//on the above you can also do a small optimization with sorting coins and breaking
 
 
 
