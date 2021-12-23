@@ -1,3 +1,28 @@
+// Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
+
+// A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
+
+// For example, "ace" is a subsequence of "abcde".
+// A common subsequence of two strings is a subsequence that is common to both strings.
+
+ 
+
+// Example 1:
+
+// Input: text1 = "abcde", text2 = "ace" 
+// Output: 3  
+// Explanation: The longest common subsequence is "ace" and its length is 3.
+// Example 2:
+
+// Input: text1 = "abc", text2 = "abc"
+// Output: 3
+// Explanation: The longest common subsequence is "abc" and its length is 3.
+// Example 3:
+
+// Input: text1 = "abc", text2 = "def"
+// Output: 0
+// Explanation: There is no such common subsequence, so the result is 0.
+
 // From leetcode solution
 
 // Recall that there are two different techniques we can use to implement a dynamic programming solution; memoization and tabulation.
@@ -35,3 +60,52 @@
 
 //Bottom up DP solution from this video:https://www.youtube.com/watch?v=Ua0GhsJSlWM
 
+//in the problem, there are a series of sub problems: for each char, either
+    // The first letter of each string is the same.
+    // The first letter of each string is different.
+
+    // For the first case, we solve the subproblem that removes the first letter from each, and add 1. 
+    // In the grid, this subproblem is always the diagonal immediately down and right.
+
+    // For the second case, we consider the subproblem that removes the first letter off the first word, and then the subproblem that removes the first letter off the second word. 
+    // In the grid, these are subproblems immediately right and below.
+
+// Putting this all together, we iterate over each column in reverse, starting from the last column (we could also do rows, the final result will be the same). 
+// For a cell (row, col), we look at whether or not text1.charAt(row) == text2.charAt(col) is true. 
+// if it is, then we set grid[row][col] = 1 + grid[row + 1][col + 1]. 
+// Otherwise, we set grid[row][col] = max(grid[row + 1][col], grid[row][col + 1]).
+
+//the above makes sense because you are starting at the end of one of the substrings and seeing the max length substring at that char
+//if char is equal to char, you add 1 to the diagonal preceding it
+    //that is because the diagonal preceding it is the max substring for the substrings of the 2 strings that don't have this newly matched char
+//if char is not equal to char you give it the max of max of 1 above and max of 1 below
+    //that is because if current char is not equal you want to keep recorded the max share chars for current col substring at each char of other string
+    //this will be max of prior string1 with current string2 or prior string 2 with current srtring 1
+//animated walk through in leetcode really helped me grasp this.
+
+var longestCommonSubsequence = function(text1, text2) {
+    //first thing, create 2 d array and fill with 0s (with extra last row and col of 0s)
+    //Array from takes arg 1: array-like obj with length property and indexed elements ,arg 2: map function
+    //in the below case we use an arrow function to have new array at each index of array and fill each new array with 0
+    //new Array constructor just takes a length property
+    const table = Array.from({length: text1.length + 1}, () => new Array(text2.length + 1).fill(0))
+    //start in bottom left cell of table (leaving 1 row and 1 col of 0s ont the ends)
+    for (let i = text1.length - 1; i >= 0; i--){
+        for (let j = text2.length - 1; j >= 0; j--){
+            //iterating through each char for current char of text i
+            //if chars match, set current table entry equal to 1 + diagonal position of table
+            //else, set it to max of below char or left char
+            if (text1[i] === text2[j]){
+                table[i][j] = 1 + table[i + 1][j + 1]
+            } else {
+                table[i][j] = Math.max(table[i+1][j], table[i][j+1])
+            }
+
+        }
+    }
+    return table[0][0]
+}
+
+let text1 = "abcde", text2 = "ace"
+
+console.log(longestCommonSubsequence (text1, text2))
