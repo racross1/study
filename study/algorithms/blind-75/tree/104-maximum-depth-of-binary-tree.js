@@ -50,5 +50,4 @@ var maxDepth = function(root) {
 
     dfs(root, 1)
     return depth
-    
 };
