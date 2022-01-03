@@ -20,6 +20,28 @@
 // 2. 1 step + 2 steps
 // 3. 2 steps + 1 step
 
+//an explanation and appraoch which I find way more intuitive:
+//bottom up with dp array as discussed in this video:
+'https://www.youtube.com/watch?v=uHAToNgAPaM'
+
+//but note that one below it is faster (though not by much)
+
+
+var climbStairsNew = function(n) {
+    if (n === 1) return 1
+    if (n === 2) return 2
+    let dp = new Array(n+1)
+    dp[0] = 1
+    dp[1] = 1
+    for (let i = 2; i <= n; i++){
+        dp[i] = dp[i-1] + dp[i-2]
+    }
+
+    return dp[n]
+    
+};
+
+console.log(climbStairsNew(5))
 //fibonacci sequence starting at 1 (not 0) up to n where result at n = answer. Other ways (not using fibonnacci) below  
 //climbstairs3 uses dp
 //climbstairs 4 uses recursion
@@ -27,6 +49,7 @@
 //only one I don't currently understand is recursion (4)
 
 //waysToClimb(n) = waysToClimb(n-1) + waysToClimb(n-2) for n > 2
+
 var climbStairs = function(n) {
     //seed numbers
     if (n === 1) return 1
@@ -124,4 +147,4 @@ var climbStairs4 = function(n, memo = new Array()) {
     // S.C: O(N)
 };
 
-climbStairs4(4)
+// climbStairs4(4)
