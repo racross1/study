@@ -20,7 +20,19 @@
 // 2. Down -> Down -> Right
 // 3. Down -> Right -> Down
 
+//solution from dynamic programming video (around 1 hr in):
+//below solution works too
+'https://www.youtube.com/watch?v=oBt53YbR9Kk' 
 
+const gridTraveler = (m, n, memo = {}) => {
+    const key = m + ',' + n
+    if (key in memo) return memo[key]
+    if (m === 1 && n === 1) return 1
+    if (m === 0 || n === 0) return 0
+
+    memo[key] = gridTraveler(m - 1, n, memo) + gridTraveler(m, n-1, memo)
+    return memo[key]
+}
 
 //this solution faster and more intuitive
 //solution from this video:
