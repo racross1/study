@@ -25,7 +25,6 @@
 //start by keeping track of first interval's end value
 //save next kept interval's end value
 
-//max non overlapping intervals up to that point?
 var eraseOverlapIntervals = function(intervals) {
     intervals = intervals.sort((a, b) => a[0] - b[0])
     let prevEnd = intervals[0][1]
