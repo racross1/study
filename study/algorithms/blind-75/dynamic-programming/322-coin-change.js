@@ -4,7 +4,33 @@
 
 // You may assume that you have an infinite number of each kind of coin.
 
- 
+ function coinChangeTry(coins, amount){
+     let dp = new Array(amount + 1).fill(Infinity)
+
+     dp[0] = 0
+
+     for(let amt = 0; amt <= amount; amt++){
+         for(let j = 0; j < coins.length; j++){
+             if (coins[j] <= amt){
+                 dp[amt] = Math.min(dp[amt], 1 + dp[amt - coins[j]])
+             }
+
+         }
+     }
+     return dp[amount] != Infinity ? dp[amount] : -1
+ }
+
+ let coins2 = [1,2,5], amount2 = 11
+ let coins3 = [2], amount3 = 3
+ let coins4 = [1], amount4 = 0
+ let coins5 = [1], amount5 = 1
+ let coins6 = [1], amount6 = 2
+
+ console.log(coinChangeTry(coins2, amount2))
+ console.log(coinChangeTry(coins3, amount3))
+ console.log(coinChangeTry(coins4, amount4))
+ console.log(coinChangeTry(coins5, amount5))
+ console.log(coinChangeTry(coins6, amount6))
 
 // Example 1:
 
@@ -48,8 +74,18 @@
 //since we want to get the smallest number of coins to make i, set dp[i] to the min of what dp[i] already is and 1 + dp[i - coins[j]]
 //1 + dp[i - coins[j]] basically we are saying if I subtract this coin from the current amount, I have some amount left (Amount Left for my reference in following sentence)
 //I want to look in my array for the current min number of coins it takes to get the Amount Left because current coint + Amount Left = current amount
-//so I will fill up the dp array and at the end just need to check if I've modified dp[amount]
-//if it's infinity that means I can't make the combo, otherwise, just return dp[amount]
+//so I will fill up the dp array and at the end just need to check if I've modified dp[amou
+
+
+/*
+for each amount leading up to amount:
+
+    for each coin, if coin is <= amount
+
+    dp for this amnount = 1 (of this coin) + the min combination of coins for the rest (i.e. difference in amont and if you take out this current coin)
+                    dp[i] = 1 + dp[i - nums[j]]
+
+*/
 function coinChange2(coins,amount){
     const dp = new Array(amount + 1).fill(Infinity)
     
@@ -150,4 +186,4 @@ var coinChange = function(coins, amount) {
 let coins1 = [1,2,5], amount1 = 11
 
 
-coinChange(coins1, amount1)
+// coinChange(coins1, amount1)

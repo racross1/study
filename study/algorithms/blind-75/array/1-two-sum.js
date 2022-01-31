@@ -40,3 +40,16 @@ var twoSum = function(nums, target) {
 
 let nums = [2,7,11,15], target = 9
 console.log(twoSum(nums, target))
+
+
+function twoSum(nums, target){
+    let map = {}
+
+    for (let i = 0; i < nums.length; i++){
+        if (hash[nums[i]] !== undefined){
+            return [hash[nums[i]], i]
+        } else {
+            hash[target - nums[i]] = i
+        }
+    }
+}

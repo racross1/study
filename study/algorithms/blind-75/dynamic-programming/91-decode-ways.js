@@ -35,6 +35,18 @@
 
 //indices are length of the string at that point
 //0 is blank string and that is base case
+
+/*
+dp array where each dp entry is the number of combinations up to that index
+for dp[0] it's 1, for dp[1] it's 1
+then for each subsequent, look at the last 1 digit and the last 2 digit num
+if last 1 digit isn't 0, add its dp entry to current. if last 2 digits together are greater than or equal to 10 and less than or equal to 26
+add dp entry of i - 2 
+this is the big question, why i - 2?
+we use the 10s as well as the 1s 
+
+
+*/
 function numDecodingsSOLUTION(s) {
     if (s == null || s.length === 0) return 0;
     if (s[0] === '0') return 0;
@@ -50,15 +62,13 @@ function numDecodingsSOLUTION(s) {
     //string of length 2
     //each index s is looking back at the combinations UP TO that index s
     for (let i = 2; i <= s.length; i++) {
-        console.log('i:', i, 's[i]:', s[i])
-        console.log("dp", dp)
-        console.log('starting dp[i]', dp[i])
+       
       //first iter, looks back at s[1]
         //if s[1] isn't 0
     //second iter looks back at s[2]
 
      const a = parseInt(s[i-1])  // prior one digit
-     console.log('a', a) 
+     
      if (a > 0) {
         //first iter
             //s[2] = 0 + s[1] which is 1
@@ -76,17 +86,16 @@ function numDecodingsSOLUTION(s) {
         //dp value at prior
         dp[i] += dp[i - 2];
       }
-      console.log('ending dp[i]', dp[i])
-
+    
     }
   
     return dp[s.length];
   }
 
 
-let s = "122312"
+let s = "1220312"
 
-numDecodingsSOLUTION(s)
+console.log(numDecodingsSOLUTION(s))
 
 
 
@@ -188,7 +197,7 @@ const decodeWays = (s) => {
 
 
 /*BELOW THIS LINE ARE NOT WORKING SOLUTIONS*/
-var numDecodings = function(s) {
+var numDecodingsX = function(s) {
     if(s[0] == '0') return 0
     if (!s.length) return 0
 
@@ -216,7 +225,7 @@ var numDecodings = function(s) {
 
 
 //my initial try
-var numDecodings = function(s) {
+var numDecodingsXX = function(s) {
     if (!s.length) return 0
     if (s[0] == '0') return 0
     

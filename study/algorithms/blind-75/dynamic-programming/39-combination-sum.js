@@ -57,7 +57,7 @@
 //code along from that video
 var combinationSum = function(candidates, target) {
     //global result variable
-    result = []
+    let result = []
     //dfs search defined within the scope of the function
 
     //pointer i which tells us which of the remaining candidates we're allowed to choose
@@ -98,3 +98,8 @@ var combinationSum = function(candidates, target) {
     dfs(0, [], 0)
     return result
 };
+
+
+let candidates = [2,3,6,7], target = 7
+let candidates2 = [2,3,5], target2 = 8
+console.log(combinationSum(candidates2, target2))

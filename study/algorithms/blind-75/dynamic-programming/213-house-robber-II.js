@@ -57,7 +57,6 @@ for first comparison, make it 1 before and 2 before + last
 
 */
 
-
 //this one works but is slow
 //use houserobber 1 solution as helper and return max of houserob 1 for nums excluding first house, and nums excluding last
 function rob(nums){
