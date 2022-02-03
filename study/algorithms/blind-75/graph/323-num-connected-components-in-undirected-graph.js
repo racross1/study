@@ -19,7 +19,7 @@
     'https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/discuss/1198462/Simple-JavaScript-%2B-Python-solutions-or-Union-Find-or-Clean'
 //faster dfs than mine: 
     'https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/discuss/1136637/javascript-dfs'
-    
+
 //faster DFS version loops over all nodes n instead of all vertices in adjlist. here's me trying to adapt my original solution to that
 //this doesn't appear to be much faster (maybe the data structures I'm using?)
 var countComponents = function(n, edges) {
@@ -114,7 +114,7 @@ var countComponents = function(n, edges) {
     let components = 0
     const seen = new Set()
     
-    //loop over all nodes in adjlist. if parnet is not in seen, dfs its path and increment counter
+    //loop over all nodes in adjlist. if parent is not in seen, dfs its path and increment counter
     for (let node of adjList){
         if (!seen.has(node[0])){
             dfs(node[0])

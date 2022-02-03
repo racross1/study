@@ -24,7 +24,16 @@
 'https://www.youtube.com/watch?v=oBt53YbR9Kk'
 
 //****recursive without memoization
+/*
+m = target.length
+n = wordDict.length
 
+time complexity
+
+O (n * m^2) time
+O (m^2) space
+
+*/
 function wordBreak3(s, wordDict){
     if (s === '') return true
     console.log('s:', s)

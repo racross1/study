@@ -67,7 +67,7 @@ var cloneGraph = function(node) {
    vertexMap.set(start, new Node(start.val)); 
    
    /*
-   * Breadth first search continues unitil we process all the vertices in the graph
+   * Breadth first search continues until we process all the vertices in the graph
    * In the original graph. We know this is done when queue is empty
    */
    
@@ -95,4 +95,104 @@ var cloneGraph = function(node) {
    }
   return vertexMap.get(start); 
    
+};
+
+//with DFS
+var cloneGraph = function(node) {
+  // If start node is null than we can't do any cloning
+ let start = node; 
+ if (start === null) return null;
+ // vertexMap is the original node reference to our node
+ const vertexMap = new Map(); 
+ 
+ 
+ // Add the start node to the queue. Give the start node a clone in the vertex map
+ const stack = [start]
+ vertexMap.set(start, new Node(start.val)); 
+ 
+ /*
+ * Breadth first search continues until we process all the vertices in the graph
+ * In the original graph. We know this is done when queue is empty
+ */
+ 
+ while (stack.length > 0) {
+     // We grab a node. We will express all of the edges coming off of this node.
+     const currentVertex = stack.pop(); 
+     // Iterate over all adjacents.
+     for (const neighbor of currentVertex.neighbors) {
+       // Has this neighbor been given a clone?
+         if (!vertexMap.has(neighbor)) {
+             /*
+             * No? Give it a mapping and add the original neighbor to the search queue so we
+             * can express ITS edges later
+             */
+             vertexMap.set(neighbor, new Node(neighbor.val))
+             stack.push(neighbor); 
+         }
+         
+         /*
+         * Draw the edge from currVertex's clone to neighbor's clone. Do you see how our
+         * hashtable makes this quick access possible?
+         */
+         vertexMap.get(currentVertex).neighbors.push(vertexMap.get(neighbor)); 
+     }
+ }
+return vertexMap.get(start); 
+ 
+};
+
+
+//DFS recursive implementations
+
+//this one doesn't make as much intuitive sense to me - see next one (annotated)
+var cloneGraph = function (graph) {
+  var map = {};
+  return traverse(graph);
+
+  function traverse(node) {
+    if (!node) return node;
+    if (!map[node.val]) {
+      map[node.val] = new Node(node.val);
+      map[node.val].neighbors = node.neighbors.map(traverse);
+    }
+    return map[node.val];
+  }
+}
+
+
+var cloneGraph = function(node, map = new Map()) {
+  //negtive base case
+  if(!node) return null
+  // positive base case: if node is in map, return the copy of that node from your map
+  if(map.has(node)) return map.get(node)
+  
+  //otherwise create new node using current node val
+  const n = new Node(node.val)
+  //add new node to your map with key as actual node, value as new copied node
+  map.set(node, n)
+  //loop through actual node's neighbors
+  for(let k of node.neighbors){    
+    //and for each one, create that new node using the recursive function and add that newly created node to the neighbors of your copy n
+    n.neighbors.push(cloneGraph(k, map))
+  }
+  //after you have added all neighbors to all nodes, return n (new copied node)
+  return n
+};
+
+
+//this one not my comments - above is my comments and easier for me to understand
+var cloneGraph = function(node, copy = new Map()) {
+  // Handle null case
+  if (!node) return null;
+      
+  // If our graph hasn't already copied the input node
+  if (!copy.has(node.val)) {
+      // Create new copy node (+ reference in map)
+      copy.set(node.val, new Node(node.val));
+      // Recursively clone neighbors
+      copy.get(node.val).neighbors = node.neighbors.map((neighbor) => cloneGraph(neighbor, copy));
+  }
+      
+  // Return copied/new node (* not * the original node passed in)
+  return copy.get(node.val);
 };

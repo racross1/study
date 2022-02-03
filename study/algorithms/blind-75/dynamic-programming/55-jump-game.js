@@ -38,6 +38,9 @@ var canJump = function(nums) {
 
 
 
+
+
+
 /*my next try with solution help: DOES NOT WORK*/
 
 var canJump = function(nums) {
