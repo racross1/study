@@ -22,3 +22,24 @@ var kthSmallest = function(root, k) {
     
     
 };
+
+//Working Solution with ITERATIVE INORDER TRAVERSAL
+
+
+var kthSmallest = function(root, k) {
+    let result = []
+    let stack = []
+    let cur = root
+
+    while(cur || stack.length){
+        while(cur){
+            stack.push(cur)
+            cur = cur.left
+        }
+        cur = stack.pop()
+        result.push(cur.val)
+        cur = cur.right
+    }
+    
+    return result[k-1]
+};

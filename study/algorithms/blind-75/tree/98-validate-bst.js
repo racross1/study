@@ -27,7 +27,7 @@ then at end of helper return
 to check left and right subtrees
 */
 
-//another try again to make sure I get it
+//another try again for practice
 function isValidBST(root){
     if (!root) return true
     return helper(root, null, null)
