@@ -27,6 +27,8 @@ let strs5 = ["c","c"]
 //expected: 
 //[["c","c"]]
 
+// Time Complexity: O(n*klog(k)) where n is the length of input array and k is the maximum length of a string in input array
+// Space Complexity: O(n)
 
 const groupAnagrams = strs => {
    //create a map

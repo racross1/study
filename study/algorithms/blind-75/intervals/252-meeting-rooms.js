@@ -18,6 +18,9 @@
 // intervals[i].length == 2
 // 0 <= starti < endi <= 106
 
+/*
+Sort arr. For loop with i starting at 1 (so you can look back). if intervals[i][0] < intervals[i-1][1]) return false. return true after loop
+*/
 
 var canAttendMeetings = function(intervals) {
     intervals = intervals.sort((a, b) => a[0] - b[0])

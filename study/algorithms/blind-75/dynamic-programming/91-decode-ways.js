@@ -47,6 +47,40 @@ we use the 10s as well as the 1s
 
 
 */
+
+function numDecodings(s) {
+  if (s == null || s.length === 0) return 0;
+  if (s[0] === '0') return 0;
+
+  const dp = new Array(s.length + 1).fill(0);
+
+  dp[0] = 1;
+  dp[1] = 1;
+
+  for (let i = 2; i <= s.length; i++) {
+    const a = parseInt(s[i-1])  // last one digit
+    if (a > 0) {
+      dp[i] += dp[i - 1];
+    }
+
+    const b = parseInt(s[i-2] + s[i-1])
+    
+    if (b >= 10 && b <= 26) {
+      dp[i] += dp[i - 2];
+    }
+  }
+
+  return dp[s.length];
+}
+
+
+
+
+
+
+
+
+
 function numDecodingsSOLUTION(s) {
     if (s == null || s.length === 0) return 0;
     if (s[0] === '0') return 0;
@@ -86,6 +120,8 @@ function numDecodingsSOLUTION(s) {
         //dp value at prior
         dp[i] += dp[i - 2];
       }
+
+      
     
     }
   

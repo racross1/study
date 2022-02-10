@@ -8,7 +8,10 @@ let nums1 = [1,2,3,4]
 
 //2 passes
 //first pass going left to right, on first pass you set index = to rightmult, which starts at 1. 
-//Then you multiply right mult by currend index. This way you offset, so for first loop [a,b,c,d] becomes [b,d*c,d,1]
+//Then you multiply right mult by currend index. This way you offset, so for first loop [a,b,c,d] becomes [b*d*c,d*c,d,1]
+//basically it multiplies all idxs by the idxs after them in the order
+//on second pass you go from left to right starting at 1 which again offsets, this time so that each idx is multipled by all the idxs before itself
+//
 var productExceptSelf = function(nums) {
     var output = [];
     var leftMult = 1;
