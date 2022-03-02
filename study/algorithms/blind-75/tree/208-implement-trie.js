@@ -29,6 +29,66 @@
 
 
 //one implementation from leetcode discuss: https://leetcode.com/problems/implement-trie-prefix-tree/discuss/399178/Clean-JavaScript-solution
+//non-console logged version here, console logged version of same implementation is directly below
+class Trie {
+    //constructor, when new trie created, initialized with this.root = {}
+    constructor() {
+      this.root = {};
+    }
+  
+    //pass word to be inserted
+    //creates nested hashes of letters (checks if char is in trie, if not creates new nested hash for it)
+    insert(word) {
+        //node = root of trie
+        let node = this.root;
+       
+        //for each letter of word passed
+        for (let c of word) {
+            //if root does not have entry for key if current letter
+            //create hash for c
+            if (node[c] == null) node[c] = {};
+            //set node to newly created node (or preexisting node) for next iteration
+            node = node[c];
+        }
+        //after iterating through word, give last char isWord property of true
+        node.isWord = true;
+    }
+  
+    //pass word to be traversed
+    traverse(word) {
+        //start at root  
+        let node = this.root;
+
+        //for each char of word
+        for (let c of word) {
+            //node == node at that char
+            node = node[c];
+            //if you don't find node of that char (i.e. node == null)
+            //return null
+            if (node == null) return null;
+        }
+        //otherwise you traversed the word in the trie and you return the last char of the word
+      return node;
+    }
+  
+    search(word) {
+        //to search, set node equal to traversed word
+        //traverse returns either last char in word, or null
+        const node = this.traverse(word);
+        //if node is not null (i.e. you got to / found the last char)
+        //and node.isWord property == true return true because you found the word
+        //else return false
+        return node != null && node.isWord === true;
+    }
+  
+    startsWith(prefix) {
+        //with prefix you just need to know if prefix is present (not if isWord = true, which indicates the end of the word)
+        //return a bool that traversed prefix returns a char
+        return this.traverse(prefix) != null;
+    }
+  }
+
+
 //annotated below
 
 //change function to class

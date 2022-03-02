@@ -34,6 +34,7 @@ const gridTraveler = (m, n, memo = {}) => {
     return memo[key]
 }
 
+/*THIS IS MY PREFERRED SOLUTION*/
 //this solution faster and more intuitive
 //solution from this video:
 'https://www.youtube.com/watch?v=IlEsdxuD4lY'
@@ -42,6 +43,12 @@ const gridTraveler = (m, n, memo = {}) => {
     //so go through and initialize first row of 1s and solve for each row above it by making new row, going for right to left and setting newRow[j] = to newRow[j+1] (right) + row[j] (above: i.e. row above at same index)
     //see illustration:
     'assets/Screen Shot 2022-01-09 at 6.34.35 PM.png'
+
+/*
+time: O(m*n)
+space: O(n)
+*/
+
 var uniquePaths = function(m, n) {
     //start with row (this is going to be the bottom row)
     let row = new Array(n).fill(1)
@@ -75,15 +82,21 @@ var uniquePaths = function(m, n) {
 
 //time: O (m * n)
 //space: O(m)
-var uniquePaths = function(m, n) {
+var uniquePaths3 = function(m, n) {
+    console.log("m: ",m, "n: ",n)
     const dp = new Array(m).fill(1)
+    console.log("dp", dp)
     while (n > 1) {
         for (let i = 1; i < m; i++){
+            console.log("dp at top of while loop:", dp)
+            console.log("n: ", n)
             dp[i] += dp[i-1]
         }
         n--
     }
+    console.log("final dp",dp)
     return dp[m-1]
 };
 
 
+console.log(uniquePaths3(3, 7))

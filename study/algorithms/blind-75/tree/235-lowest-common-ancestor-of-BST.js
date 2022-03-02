@@ -12,7 +12,7 @@ recursive solution
 
 recursively call function and check 1(if root.val is greater than p and q vals) return call of fn with root.left
 2) otherwise if root.val is less than p and q vals return function call with root.right
-otherwise return root, because that means that root.val is either equal to one of the vals or greater than 1 and less than 1 (i.e. they are its left and right children children)
+otherwise return root, because that means that root.val is either equal to one of the vals or greater than 1 and less than 1 (i.e. they are its left and right children)
 
 
 */

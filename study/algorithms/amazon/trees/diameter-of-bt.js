@@ -10,6 +10,28 @@ function TreeNode(val, left, right) {
    this.right = (right===undefined ? null : right)
 }
 
+//submitted solution
+
+var diameterOfBinaryTree = function(root) {
+  if (!root) return 0
+  let max = 0
+
+  const maxDepth = function(node) {
+      if (!node) return 0
+      
+      let left = maxDepth(node.left)
+      let right = maxDepth(node.right)
+      
+      max = Math.max(max, left + right)
+      return Math.max(left, right) + 1
+       
+  }
+  
+  maxDepth(root)
+  return max
+  
+};
+
 
 //my implementation of the first solution below
 var diameterOfBinaryTreeFinal = function(root) {

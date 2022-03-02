@@ -60,7 +60,19 @@ q2.right = new TreeNode(2);
 //output: boolean
 //edge case: !p, !q
 
+/*
+dfs helper function. 
+can also recurse the function itself
+what's important are the base cases:
+//if !p && !q return true
+//if !p || !q || p.val !== q.val) return false
 
+and then return function call with left subtree && funcyion call right subtree
+
+if no p and q return true. 
+if no p or no q or if p and q vals arent equal, otherwise return call of function with p and q lefts && p and q rights. 
+(&& will give you your true) 
+*/
 
 
  var isSameTree = function(p, q) {

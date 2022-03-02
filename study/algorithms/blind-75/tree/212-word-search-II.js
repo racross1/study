@@ -33,7 +33,7 @@ var findWords = function(board, words) {
   };
   
     function dfs(node, row, col, board, res) {
-      if (node.end) {
+        if (node.end) {
         res.push(node.end);
         node.end = null;   // make sure only print one time for each word
       }
@@ -64,3 +64,7 @@ var findWords = function(board, words) {
       }
       return root;
     }
+
+    let board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
+
+    console.log(findWords(board, words))

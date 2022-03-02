@@ -15,3 +15,46 @@
 
 // Input: head = [1,2], n = 1
 // Output: [1]
+
+/*
+fast and slow pointers. Reminder cases: if at start when p1 = head if !p1.next, head = head.next, return head. 
+Then after you offset p2, if !p2. head = p1.next; return head. 
+And then for while loop to advance both while (p2 !== null && p2.next !== null)
+
+*/
+const removeNthFromEnd = function(head, n) {
+    let p1 = head
+    if (!p1.next) {
+        head = head.next
+        return head
+   }
+   
+    let p2 = offsetPointer(head, n)
+    
+    if (!p2) {
+        head = p1.next
+        return head
+    }
+
+    while (p2 !== null && p2.next !== null){
+        p1 = p1.next
+        p2 = p2.next
+
+    }
+ 
+   p1.next = p1.next.next
+
+    return head
+
+};
+
+const offsetPointer = function(head, n){
+   let p2 = head
+   while (n--) {
+       p2 = p2.next
+     
+   }
+
+   return p2
+}
+

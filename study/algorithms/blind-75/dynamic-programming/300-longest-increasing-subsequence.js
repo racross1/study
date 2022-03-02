@@ -26,10 +26,11 @@
 //below, original code comments have *
 //so each time we find an increasing subsequence, we add 1 to the 1 at that index in the dp arr
 
-//overall, dp arr keeps track of max increasing subseq at that index, if another one gets incremented after it, increment counter and set that index equal to the new amoutn and also reset max
+//overall, dp arr keeps track of max increasing subseq at that index, 
+//if another one gets incremented after it, increment counter and set that index equal to the new amount and also reset max
 var lengthOfLIS = function (nums) {
     // *Create dp array
-    const dp = Array.from(nums, () => 1);
+    const dp = Array(nums.length).fill(1)
     console.log(dp)
     // *Max subsequence length
     let max = 1
@@ -67,7 +68,35 @@ var lengthOfLIS = function (nums) {
   return max;
 };
 
+//from neetcode video:
+'https://www.youtube.com/watch?v=cjWnW0hdF1Y'
+
+
+/*
+work our way backwards from last index
+nested loops where outer loop (i) starts at nums.length -2 
+and inner loop starts at i+1
+wihtin loops if nums[i] < nums[j]
+dp[i] is max of dp[i] and 1 + dp[j]
+
+O(n^2)
+*/
+function lengthOfLIS2(nums){
+    let dp = new Array(nums.length).fill(1)
+
+    for (let i = nums.length - 1; i >= 0; i--){
+        for (let j = i+1; j < nums.length; j++){
+            //only if this condition true can we update LIS dp array
+            if(nums[i] < nums[j]){
+                dp[i] = Math.max(dp[i], 1 + dp[j])
+            }
+        }
+    }
+    return Math.max(...dp)
+
+}
+
 
 let nums = [10,9,2,5,3,7,101,18]
 
-lengthOfLIS(nums)
+lengthOfLIS2(nums)

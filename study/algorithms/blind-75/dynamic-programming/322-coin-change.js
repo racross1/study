@@ -4,6 +4,40 @@
 
 // You may assume that you have an infinite number of each kind of coin.
 
+/*
+updated notes:
+
+dp tabulation where dp array is amount + 1 filled with Infinity
+seed dp[0] = 0
+
+loop through amounts (outer loop)
+    coins (inner loop) and if current coin is <= current amount
+    dp[i] = Math.min(dp[i], dp[i - coins[j]])
+at end return ternary of whether dp[amount] is Infinity or not
+*/
+
+//my try again
+/*
+ojo: don't forget to seed dp[0]
+don't forget to do Math.min preexisting dp[i] and new dp[i]
+*/
+var coinChange = function(coins, amount) {
+    let dp = new Array(amount + 1).fill(Infinity)
+    dp[0] = 0
+    //loop through amounts and find min coins at each
+    for(let i = 0; i <= amount; i++){
+        for(let j = 0; j < coins.length; j++){
+            if (coins[j] <= i){
+                dp[i] = Math.min(dp[i], 1 + dp[i - coins[j]])
+            }
+        }
+    }
+    
+    return dp[amount] != Infinity ? dp[amount] : -1
+    
+};
+
+//my try
  function coinChangeTry(coins, amount){
      let dp = new Array(amount + 1).fill(Infinity)
 

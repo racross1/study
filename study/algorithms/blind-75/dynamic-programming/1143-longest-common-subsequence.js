@@ -83,13 +83,25 @@
     //this will be max of prior string1 with current string2 or prior string 2 with current srtring 1
 //animated walk through in leetcode really helped me grasp this.
 
+
+/*
+in the below, we go diagonally and add 1 when chars match because that means we are eliminating those 2 matched chars and want to find the max substrings
+of the remainder of the 2 strings
+
+because the cell diagonally represents the max substring of the strings excluding the current, so we know we can add 1 to our max
+
+if the chars don't match we choose the max of dp array to the right and below because longest common substring at that char is longest common at same char in text 1 and rest of text 2
+or same char in text 2 with rest of text 1
+
+*/
+
 var longestCommonSubsequence = function(text1, text2) {
-    //first thing, create 2 d array and fill with 0s (with extra last row and col of 0s)
+    //first thing, create 2 d array and fill with 0s (with extra last row and col of 0s for blank strings)
     //Array from takes arg 1: array-like obj with length property and indexed elements ,arg 2: map function
     //in the below case we use an arrow function to have new array at each index of array and fill each new array with 0
     //new Array constructor just takes a length property
     const table = Array.from({length: text1.length + 1}, () => new Array(text2.length + 1).fill(0))
-    //start in bottom left cell of table (leaving 1 row and 1 col of 0s ont the ends)
+    //start in bottom right cell of table (leaving 1 row and 1 col of 0s ont the ends)
     for (let i = text1.length - 1; i >= 0; i--){
         for (let j = text2.length - 1; j >= 0; j--){
             //iterating through each char for current char of text i
@@ -100,9 +112,9 @@ var longestCommonSubsequence = function(text1, text2) {
             } else {
                 table[i][j] = Math.max(table[i+1][j], table[i][j+1])
             }
-
         }
     }
+
     return table[0][0]
 }
 
